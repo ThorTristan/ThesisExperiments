@@ -19,6 +19,18 @@
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{996d8d72-6b02-493a-8eda-340efe7fbbc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LSystems">
+      <UniqueIdentifier>{ab3b3668-b5e4-42de-9498-9db2b6ff3452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LSystems">
+      <UniqueIdentifier>{94542422-3bfc-479f-88f5-7714b580de9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Turtle">
+      <UniqueIdentifier>{e948e237-4600-4e2f-bfc3-73c5e2acef49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Turtle">
+      <UniqueIdentifier>{14de465f-6d03-4c50-89fa-3e0290befbd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -30,6 +42,15 @@
     <ClCompile Include="renderManager.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="inputManager.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="lsystemCreator.cpp">
+      <Filter>Source Files\LSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="turtle.cpp">
+      <Filter>Source Files\Turtle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -40,6 +61,18 @@
     </ClInclude>
     <ClInclude Include="renderManager.h">
       <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="inputManager.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="lsystemCreator.h">
+      <Filter>Header Files\LSystems</Filter>
+    </ClInclude>
+    <ClInclude Include="turtle.h">
+      <Filter>Header Files\Turtle</Filter>
+    </ClInclude>
+    <ClInclude Include="structs.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
