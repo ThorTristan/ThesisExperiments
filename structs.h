@@ -1,6 +1,15 @@
 #pragma once
 
 
+struct Point
+{
+
+	int x;
+	int y;
+
+
+};
+
 struct TurtleState
 {
 
@@ -11,14 +20,12 @@ struct TurtleState
 
 };
 
-std::pair<int, int> directionVectors[] =
+struct Checkpoint
 {
-    {0, -1},  // UP
-    {1, 0},   // RIGHT
-    {0, 1},   // DOWN
-    {-1, 0},  // LEFT
-
+	int x;
+	int y;
 };
+
 
 
 enum Direction

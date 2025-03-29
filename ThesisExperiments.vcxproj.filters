@@ -31,6 +31,21 @@
     <Filter Include="Source Files\Turtle">
       <UniqueIdentifier>{14de465f-6d03-4c50-89fa-3e0290befbd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Algorithms">
+      <UniqueIdentifier>{8cee7148-4fed-4eea-b584-5f6e0cb1c012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Algorithms\WordMutationAlgorithm">
+      <UniqueIdentifier>{8024a1b4-e7a3-4d8d-aba9-49ac4a65b4d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Algorithms\RuleMutationAlgorithm">
+      <UniqueIdentifier>{95907155-eb80-4088-b99f-1fbe7d191b63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithms">
+      <UniqueIdentifier>{9fa28141-fc43-47f4-9018-a32f4a0eaf4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithms\RuleMutationAlgorithm">
+      <UniqueIdentifier>{c53df384-0fe9-4755-854f-6c7f41f1bca0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -50,6 +65,18 @@
     </ClCompile>
     <ClCompile Include="turtle.cpp">
       <Filter>Source Files\Turtle</Filter>
+    </ClCompile>
+    <ClCompile Include="gridManager.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="individual.cpp">
+      <Filter>Source Files\Algorithms\RuleMutationAlgorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="fitnessFunction.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="evolutionRM.cpp">
+      <Filter>Source Files\Algorithms\RuleMutationAlgorithm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +100,21 @@
     </ClInclude>
     <ClInclude Include="structs.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gridManager.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="fitnessFunction.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="individual.h">
+      <Filter>Header Files\Algorithms\RuleMutationAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="helperFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="evolutionRM.h">
+      <Filter>Header Files\Algorithms\RuleMutationAlgorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,16 +15,19 @@ public:
 
 public:
 
+	void Generate();
 	// Return the grid representation
 	std::vector<int> returnGridVector();
+	void printVector(const std::vector<int>& vec);
 
-	void updateState();
+	
 
 	bool isInBounds(int x, int y);
 
 private:
 
 	void initializeGrid();
+	void updateState();
 
 private:
 
@@ -45,6 +48,11 @@ private:
 	std::vector<int> m_Grid;
 
 private:
+
+
+
+	static const std::pair<int, int> directionVectors[4];
+
 
 	int m_StepLength;
 	int m_CurrentDirection;

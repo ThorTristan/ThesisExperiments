@@ -9,10 +9,45 @@ Turtle::Turtle(TurtleState initialState, std::stack<char> lsystemStack, int grid
     initializeGrid();
 
     updateState();
+
+
+}
+
+
+
+const std::pair<int, int> Turtle::directionVectors[4] =
+{
+    {0, -1},  // UP
+    {1, 0},   // RIGHT
+    {0, 1},   // DOWN
+    {-1, 0},  // LEFT
+
+};
+
+void Turtle::Generate()
+{
+
 }
 
 std::vector<int> Turtle::returnGridVector() { return m_Grid; }
 
+void Turtle::printVector(const std::vector<int>& grid) {
+
+    int cols = 70;
+    if (cols <= 0) {
+        std::cerr << "Invalid column count!\n";
+        return;
+    }
+
+    int rows = grid.size() / cols;
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << grid[i * cols + j] << " ";
+        }
+        std::cout << "\n";  // Newline after each row
+    }
+}
 
 void Turtle::updateState()
 {
