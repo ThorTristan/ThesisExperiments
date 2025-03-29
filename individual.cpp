@@ -85,6 +85,8 @@ void Single::Mutate()
 
 
 
+
+
 void Single::Evaluate(FitnessType chosenFitness)
 {
 	m_Individual.Fitness = 0;

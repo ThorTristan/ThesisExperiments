@@ -116,5 +116,8 @@
     <ClInclude Include="evolutionRM.h">
       <Filter>Header Files\Algorithms\RuleMutationAlgorithm</Filter>
     </ClInclude>
+    <ClInclude Include="evolutionWM.h">
+      <Filter>Header Files\Algorithms\WordMutationAlgorithm</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
