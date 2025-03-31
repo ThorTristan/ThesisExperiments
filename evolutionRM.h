@@ -9,7 +9,7 @@ class Evolution
 
 public:
 
-	Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness);
+	Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation);
 
 	void InitialisePopulation();
 	void Selection();
@@ -42,6 +42,8 @@ private:
 	TurtleState m_InitialState;
 	FitnessType m_ChosenFitness;
 	bool m_Complete;
+
+	MutationType m_MutationChoice;
 
 
 private:

@@ -50,3 +50,10 @@ enum GridState
 	PATH,
 
 };
+
+enum MutationType
+{
+
+	WORD,
+	RULE
+};

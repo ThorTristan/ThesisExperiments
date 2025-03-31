@@ -85,6 +85,73 @@ void Single::Mutate()
 
 
 
+void Single::MutateWord()
+{
+	std::stack<char> tempStack = m_Individual.individual;
+	std::vector<int> fIndices;
+	std::vector<char> symbols;
+
+	while (!tempStack.empty())
+	{
+		symbols.push_back(tempStack.top());
+		tempStack.pop();
+	}
+	std::reverse(symbols.begin(), symbols.end());
+
+	for (int i = 0; i < symbols.size(); ++i)
+	{
+		if (symbols[i] == 'F')
+		{
+			fIndices.push_back(i);
+		}
+	}
+
+	if (fIndices.empty())
+	{
+		std::cout << "No 'F' symbols found to expand.\n";
+		return;
+	}
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dist(0, fIndices.size() - 1);
+	int randomIndex = fIndices[dist(gen)];
+
+	std::vector<char> possibleSymbols = { '[', ']', '+', '-', 'F' };
+	std::uniform_int_distribution<> lengthDist(3, 8); // Random expansion length
+	int expansionSize = lengthDist(gen);
+
+	std::vector<char> randomExpansion;
+	for (int i = 0; i < expansionSize; ++i)
+	{
+		std::uniform_int_distribution<> symbolDist(0, possibleSymbols.size() - 1);
+		randomExpansion.push_back(possibleSymbols[symbolDist(gen)]);
+	}
+
+	symbols[randomIndex] = 'F';
+	symbols.insert(symbols.begin() + randomIndex + 1, randomExpansion.begin(), randomExpansion.end());
+
+	while (!m_Individual.individual.empty())
+	{
+		m_Individual.individual.pop();
+	}
+
+	for (auto it = symbols.rbegin(); it != symbols.rend(); ++it)
+	{
+		m_Individual.individual.push(*it);
+	}
+
+	std::stack<char> reversedStack;
+	while (!m_Individual.individual.empty())
+	{
+		reversedStack.push(m_Individual.individual.top());
+		m_Individual.individual.pop();
+	}
+
+	m_Individual.individual = reversedStack;
+}
+
+
 
 
 void Single::Evaluate(FitnessType chosenFitness)

@@ -40,6 +40,9 @@ public:
 	Single(std::string startingWord, int ruleIterations, TurtleState initialState);
 
 	void Mutate();
+
+	void MutateWord();
+
 	void Evaluate(FitnessType chosenFitness);
 
 

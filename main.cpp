@@ -36,11 +36,20 @@ int main(int argc, char* argv[])
 	int iterations = 3;
 	int popSize = 100;
 	int generations = 50;
+	MutationType mutationChoice = RULE;
 
 	TurtleState initialState{25,49,N};
 	
-	Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, AREA);
+	Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, AREA,WORD);
 
+
+	Single single = Single("F-F+F", iterations, initialState);
+
+	//single.GetIndividual().individual;
+	//single.PrintLS();
+	//single.MutateWord();
+	//single.PrintLS();
+		
 	
 		 
 	while (!quit)

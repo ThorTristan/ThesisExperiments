@@ -16,7 +16,7 @@ extern RenderManager RM;
 
 
 
-Evolution::Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness)
+Evolution::Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation)
 {
 
     m_PopSize = popSize;
@@ -26,6 +26,7 @@ Evolution::Evolution(int popSize, std::string startingWord, int ruleIterations, 
     m_NumberOfGenerations = numGenerations;
     m_Complete = false;
     m_ChosenFitness = chosenFitness;
+    m_MutationChoice = chosenMutation;
 
 
 }
@@ -113,7 +114,21 @@ void Evolution::Mutation()
 
     for (int i = 0; i < currentSize; i++)
     {
-        m_Population[i].Mutate();
+
+        switch (m_MutationChoice)
+        {
+        case RULE:
+            m_Population[i].Mutate();
+            break;
+        case WORD:
+            m_Population[i].MutateWord();
+            break;
+        default:
+            std::cout << "default mutation chosen" << std::endl;
+            m_Population[i].Mutate();
+            break;
+        }
+        
 
 
     }
