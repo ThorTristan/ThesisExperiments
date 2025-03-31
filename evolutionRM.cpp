@@ -2,6 +2,7 @@
 
 extern GridManager GM;
 extern RenderManager RM;
+extern FitnessFunction FF;
 //extern SceneManager SM;
 
 
@@ -16,7 +17,7 @@ extern RenderManager RM;
 
 
 
-Evolution::Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation)
+Evolution::Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation, CheckpointPattern chosenPattern)
 {
 
     m_PopSize = popSize;
@@ -27,6 +28,7 @@ Evolution::Evolution(int popSize, std::string startingWord, int ruleIterations, 
     m_Complete = false;
     m_ChosenFitness = chosenFitness;
     m_MutationChoice = chosenMutation;
+    m_Pattern = chosenPattern;
 
 
 }
@@ -44,7 +46,7 @@ void Evolution::InitialisePopulation()
 
     for (int i = 0; i < m_PopSize; ++i)
     {
-        m_Population.emplace_back(m_StartingWord, m_RuleIterations, m_InitialState);
+        m_Population.emplace_back(m_StartingWord, m_RuleIterations, m_InitialState,m_Pattern);
         m_Population[i].Evaluate(m_ChosenFitness);
     }
 }
@@ -68,6 +70,9 @@ void Evolution::SortPopulation()
 
 void Evolution::RenderIndividual(Individual individual)
 {
+
+  
+
     int gridHeight = 50;
     int gridWidth = 50;
     RM.prepareScene();
@@ -78,8 +83,9 @@ void Evolution::RenderIndividual(Individual individual)
 
 
 
+    int numCheckpoints = 4;
 
-    GM.RenderGrid(gridVector, 100, 100, 150, 150, gridHeight, gridWidth);
+    GM.RenderGrid(gridVector, FF.CreateCheckpoints(50, 50, m_Pattern, numCheckpoints),100, 100, 150, 150, gridHeight, gridWidth);
     RenderFitness(individual);
 
 
@@ -91,9 +97,33 @@ void Evolution::RenderIndividual(Individual individual)
 
 void Evolution::RenderFitness(Individual individual)
 {
+    int fitness = individual.Fitness;
 
+    SDL_Color white = { 255, 255, 255, 255 };
 
-    //SM.SingleFitnessRenderer(individual.Fitness);
+    std::string text = "Fitness: " + std::to_string(fitness);
+
+    SDL_Surface* surface = TTF_RenderText_Solid(RM.font, text.c_str(), white);
+    if (!surface)
+    {
+        std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(RM.renderer, surface);
+    if (!texture)
+    {
+        std::cerr << "Failed to create texture from surface: " << SDL_GetError() << std::endl;
+        SDL_FreeSurface(surface);
+        return;
+    }
+
+    SDL_Rect rect = { 250, 98, surface->w, surface->h }; // Adjust position as needed
+    SDL_RenderCopy(RM.renderer, texture, NULL, &rect);
+
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+
 
 }
 
@@ -118,14 +148,14 @@ void Evolution::Mutation()
         switch (m_MutationChoice)
         {
         case RULE:
-            m_Population[i].Mutate();
+            m_Population[i].MutateRule();
             break;
         case WORD:
             m_Population[i].MutateWord();
             break;
         default:
             std::cout << "default mutation chosen" << std::endl;
-            m_Population[i].Mutate();
+            m_Population[i].MutateRule();
             break;
         }
         

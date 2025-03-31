@@ -57,3 +57,11 @@ enum MutationType
 	WORD,
 	RULE
 };
+
+enum CheckpointPattern 
+{
+	RANDOM,
+	GRID,
+	CLUSTERED,
+	CIRCULAR
+};

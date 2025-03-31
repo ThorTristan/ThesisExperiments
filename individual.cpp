@@ -17,12 +17,14 @@ std::unordered_map<char, std::vector<std::pair<std::string, float>>> testRules =
 
 
 
-Single::Single(std::string startingWord, int ruleIterations, TurtleState initialState)
+Single::Single(std::string startingWord, int ruleIterations, TurtleState initialState, CheckpointPattern pattern)
 {
 	m_StartingWord = startingWord;
 	m_RuleIterations = ruleIterations;
 	m_InitialState = initialState;
-	m_CheckpointLocations = FF.CreateCheckpoints(50, 50);
+
+	int numCheckpoints = 4;
+	m_CheckpointLocations = FF.CreateCheckpoints(50, 50,pattern,numCheckpoints);
 
 
 	GenerateRule();
@@ -52,7 +54,7 @@ void Single::InitialiseLsystem()
 
 // idea: swap two neighbouring symbols
 
-void Single::Mutate()
+void Single::MutateRule()
 {
 	std::vector<char> options = { '+', '-', 'F', '[', ']' };
 	std::random_device rd;
@@ -173,6 +175,9 @@ void Single::Evaluate(FitnessType chosenFitness)
 		break;
 	case MIN_MAX_CHECKPOINTS:
 		m_Individual.Fitness = (FF.CheckpointDistanceFitness(m_CheckpointLocations, constraintMatrix, m_InitialState, m_Individual.individual, 50, 50)) * 100 + FF.AreaFunction(m_Individual.individual, m_InitialState, 50);
+		break;
+	case CHECKPOINT_DISTANCE:
+		m_Individual.Fitness = FF.EvaluateCheckpointFitness(m_CheckpointLocations,m_InitialState,m_Individual.individual,50,50 );
 		break;
 	default:
 		std::cerr << "Unknown fitness type!" << std::endl;

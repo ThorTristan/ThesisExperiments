@@ -157,6 +157,7 @@
     <ClInclude Include="lsystemCreator.h" />
     <ClInclude Include="renderManager.h" />
     <ClInclude Include="structs.h" />
+    <ClInclude Include="ToDo.h" />
     <ClInclude Include="turtle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

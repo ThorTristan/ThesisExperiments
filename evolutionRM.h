@@ -9,7 +9,7 @@ class Evolution
 
 public:
 
-	Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation);
+	Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation, CheckpointPattern chosenPatern);
 
 	void InitialisePopulation();
 	void Selection();
@@ -50,6 +50,6 @@ private:
 
 	std::vector<Single> m_Population;
 	Individual m_BestIndividual;
-
+	CheckpointPattern m_Pattern;
 
 };

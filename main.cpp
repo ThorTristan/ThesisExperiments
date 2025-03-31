@@ -37,18 +37,13 @@ int main(int argc, char* argv[])
 	int popSize = 100;
 	int generations = 50;
 	MutationType mutationChoice = RULE;
+	CheckpointPattern chosenPattern = GRID;
 
 	TurtleState initialState{25,49,N};
 	
-	Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, AREA,WORD);
+	Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, CHECKPOINT_DISTANCE,RULE,GRID);
 
 
-	Single single = Single("F-F+F", iterations, initialState);
-
-	//single.GetIndividual().individual;
-	//single.PrintLS();
-	//single.MutateWord();
-	//single.PrintLS();
 		
 	
 		 

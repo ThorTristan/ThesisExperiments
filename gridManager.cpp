@@ -9,7 +9,7 @@ extern RenderManager RM;
 
 
 
-void GridManager::RenderGrid(std::vector<int> grid, int GridPosX, int GridPosY, int GridWidth, int GridHeight, int rows, int cols)
+void GridManager::RenderGrid(std::vector<int> grid, std::vector<Checkpoint> checkpointsLocation, int GridPosX, int GridPosY, int GridWidth, int GridHeight, int rows, int cols)
 {
     int m_Cols = cols;
     int m_Rows = rows;
@@ -59,26 +59,26 @@ void GridManager::RenderGrid(std::vector<int> grid, int GridPosX, int GridPosY, 
         }
     }
 
-    //RenderCheckpoints(FF.CreateCheckpoints(m_Cols, m_Rows), GridPosX, GridPosY, GridWidth, cellWidth, cellHeight);
+    RenderCheckpoints(checkpointsLocation, GridPosX, GridPosY, GridWidth, cellWidth, cellHeight);
 
 }
 
 
-//void GridManager::RenderCheckpoints(std::vector<Checkpoint> checkpointsLocation, int GridPosX, int GridPosY, int GridWidth, int cellWidth, int cellHeight)
-//{
-//
-//
-//    SDL_SetRenderDrawColor(RM.renderer, 0, 0, 255, 255); // Blue for checkpoints
-//    for (const auto& checkpoint : checkpointsLocation)
-//    {
-//        SDL_Rect checkpointRect;
-//        checkpointRect.x = checkpoint.x * cellWidth + (GridPosX - GridWidth / 2);
-//        checkpointRect.y = checkpoint.y * cellHeight + GridPosY;
-//        checkpointRect.w = cellWidth;
-//        checkpointRect.h = cellHeight;
-//
-//        SDL_RenderFillRect(RM.renderer, &checkpointRect);
-//    }
-//
-//
-//}
+void GridManager::RenderCheckpoints(std::vector<Checkpoint> checkpointsLocation, int GridPosX, int GridPosY, int GridWidth, int cellWidth, int cellHeight)
+{
+
+
+    SDL_SetRenderDrawColor(RM.renderer, 0, 0, 255, 255); // Blue for checkpoints
+    for (const auto& checkpoint : checkpointsLocation)
+    {
+        SDL_Rect checkpointRect;
+        checkpointRect.x = checkpoint.x * cellWidth + (GridPosX - GridWidth / 2);
+        checkpointRect.y = checkpoint.y * cellHeight + GridPosY;
+        checkpointRect.w = cellWidth;
+        checkpointRect.h = cellHeight;
+
+        SDL_RenderFillRect(RM.renderer, &checkpointRect);
+    }
+
+
+}

@@ -14,9 +14,8 @@ enum FitnessType
 	AREA,
 	CHECKPOINT,
 	AREA_CHECKPOINT,
-	DEAD_END,
-	BRANCHING,
-	MIN_MAX_CHECKPOINTS
+	MIN_MAX_CHECKPOINTS,
+	CHECKPOINT_DISTANCE
 
 
 };
@@ -37,9 +36,9 @@ class Single
 
 public:
 
-	Single(std::string startingWord, int ruleIterations, TurtleState initialState);
+	Single(std::string startingWord, int ruleIterations, TurtleState initialState, CheckpointPattern pattern);
 
-	void Mutate();
+	void MutateRule();
 
 	void MutateWord();
 

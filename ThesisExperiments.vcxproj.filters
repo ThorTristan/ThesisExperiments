@@ -46,6 +46,9 @@
     <Filter Include="Source Files\Algorithms\RuleMutationAlgorithm">
       <UniqueIdentifier>{c53df384-0fe9-4755-854f-6c7f41f1bca0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Experiments">
+      <UniqueIdentifier>{78ab70be-ade4-42fb-9b07-a458fbeda8eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="evolutionWM.h">
       <Filter>Header Files\Algorithms\WordMutationAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="ToDo.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
