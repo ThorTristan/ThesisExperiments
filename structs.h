@@ -60,8 +60,10 @@ enum MutationType
 
 enum CheckpointPattern 
 {
-	RANDOM,
-	GRID,
+	LINEAR,
 	CLUSTERED,
-	CIRCULAR
+	SQUARE,
+	CIRCULAR,
+	RANDOM,
+	NONE
 };

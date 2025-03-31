@@ -244,15 +244,12 @@ void Evolution::Run()
             SortPopulation();
             RenderIndividual(m_BestIndividual);
 
-            //PrintRuleSet(m_BestIndividual);
+
 
             Selection();
             Mutation();
             Evaluation();
 
-            //render or atleast pass the best fitness individual here
-
-            //std::cout << m_BestIndividual.Fitness << std::endl;
 
             SDL_Delay(100);
 

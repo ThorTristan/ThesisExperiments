@@ -49,6 +49,9 @@
     <Filter Include="Header Files\Experiments">
       <UniqueIdentifier>{78ab70be-ade4-42fb-9b07-a458fbeda8eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Experiments">
+      <UniqueIdentifier>{16c9df3c-5101-4998-98f8-a0fd272ffe82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="evolutionRM.cpp">
       <Filter>Source Files\Algorithms\RuleMutationAlgorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="checkpointAnalysis.cpp">
+      <Filter>Source Files\Experiments</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="ToDo.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="checkpointAnalysis.h">
+      <Filter>Header Files\Experiments</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

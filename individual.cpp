@@ -79,6 +79,11 @@ void Single::MutateRule()
 		m_Individual.rule['F'][0].first.erase(randomPos, 1);
 		//std::cout << "Deleted '" << deletedChar << "' from position " << randomPos << std::endl;
 	}
+	else if (m_Individual.rule['F'][0].first.size() > 1) {
+		int pos1 = posDist(gen);
+		int pos2 = posDist(gen);
+		std::swap(m_Individual.rule['F'][0].first[pos1], m_Individual.rule['F'][0].first[pos2]);
+	}
 
 	//std::cout << "Modified 'F' rule: " << m_Individual.rule['F'][0].first << std::endl;
 

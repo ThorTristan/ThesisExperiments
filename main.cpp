@@ -8,6 +8,8 @@
 #include "individual.h"
 #include "helperFunctions.h"
 #include "evolutionRM.h"
+#include "checkpointAnalysis.h"
+
 
 bool quit = false;
 RenderManager RM;
@@ -20,6 +22,7 @@ int main(int argc, char* argv[])
 	
 	InputManager InputManager;
 	LsystemGenerator LG;
+	Experiment experiment(30);
 	
 	
 
@@ -37,22 +40,22 @@ int main(int argc, char* argv[])
 	int popSize = 100;
 	int generations = 50;
 	MutationType mutationChoice = RULE;
-	CheckpointPattern chosenPattern = GRID;
+	CheckpointPattern chosenPattern = CIRCULAR;
 
 	TurtleState initialState{25,49,N};
 	
-	Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, CHECKPOINT_DISTANCE,RULE,GRID);
+	Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, CHECKPOINT_DISTANCE,RULE,CIRCULAR);
 
 
-		
+	experiment.Run();
 	
 		 
 	while (!quit)
 	{
 
-
-
-		evolution.Run();
+		
+		
+		//evolution.Run();
 		//RM.prepareScene();
 		//GM.RenderGrid(turtleTest.returnGridVector(), 150, 150, 250, 250, 70, 70);
 

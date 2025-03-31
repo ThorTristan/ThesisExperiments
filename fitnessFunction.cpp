@@ -70,7 +70,7 @@ std::vector<Checkpoint> FitnessFunction::CreateCheckpoints(int width, int height
             checkpoints.push_back(Checkpoint{ distX(gen), distY(gen) });
         }
     }
-    else if (pattern == GRID) {
+    else if (pattern == SQUARE) {
         int step = std::sqrt(numCheckpoints);
         for (int i = 0; i < step; ++i) {
             for (int j = 0; j < step; ++j) {

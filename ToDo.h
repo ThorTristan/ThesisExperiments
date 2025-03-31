@@ -24,6 +24,9 @@ Third:
 At some point:
 
 	Write the experimental proposal
+		* Write draft for checkpoint analysis ..DONE
+		* Write draft for fine tuning
+		* Write draft for comparing
 
 
 */
