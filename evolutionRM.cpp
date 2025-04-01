@@ -136,6 +136,16 @@ void Evolution::Selection()
     m_Population.erase(m_Population.begin() + m_Population.size() / 2, m_Population.end());
 }
 
+void Evolution::SetMutationParams(std::vector<char> symbolSet, std::vector<int> mutationParams,int expansionSize)
+{
+
+    m_SymbolSet = symbolSet;
+    m_MutationChances = mutationParams;
+    m_ExpansionSize = expansionSize;
+
+
+
+}
 
 void Evolution::Mutation()
 {
@@ -148,14 +158,14 @@ void Evolution::Mutation()
         switch (m_MutationChoice)
         {
         case RULE:
-            m_Population[i].MutateRule();
+            m_Population[i].MutateRule(m_SymbolSet, m_MutationChances);
             break;
         case WORD:
-            m_Population[i].MutateWord();
+            m_Population[i].MutateWord(m_SymbolSet, m_ExpansionSize);
             break;
         default:
             std::cout << "default mutation chosen" << std::endl;
-            m_Population[i].MutateRule();
+            m_Population[i].MutateRule(m_SymbolSet, m_MutationChances);
             break;
         }
         

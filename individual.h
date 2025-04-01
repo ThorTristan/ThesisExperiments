@@ -38,9 +38,9 @@ public:
 
 	Single(std::string startingWord, int ruleIterations, TurtleState initialState, CheckpointPattern pattern);
 
-	void MutateRule();
+	void MutateRule(std::vector<char> symbolSet, std::vector<int> mutationParams);
 
-	void MutateWord();
+	void MutateWord(std::vector<char> symbolSet, int expansionSize);
 
 	void Evaluate(FitnessType chosenFitness);
 

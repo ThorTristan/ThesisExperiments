@@ -53,45 +53,74 @@ void Single::InitialiseLsystem()
 
 // idea: swap two neighbouring symbols
 
-void Single::MutateRule()
+void Single::MutateRule(std::vector<char> symbolSet, std::vector<int> mutationParams)
 {
-	std::vector<char> options = { '+', '-', 'F', '[', ']' };
+	std::vector<char> options = symbolSet;
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<int> charDist(0, options.size() - 1);
 	std::uniform_int_distribution<int> posDist(0, m_Individual.rule['F'][0].first.size());
 	std::uniform_real_distribution<float> chanceDist(0.0f, 1.0f);
 
+	// Calculate cumulative mutation ranges
+	int addChance = mutationParams[0];  // 60%
+	int deleteChance = mutationParams[1];  // 20%
+	int swapChance = mutationParams[2];  // 20%
+
+	// Create cumulative ranges
+	float addRange = addChance / 100.0f;
+	float deleteRange = addRange + (deleteChance / 100.0f);
+	float swapRange = deleteRange + (swapChance / 100.0f);
+
+	// Generate a random mutation type based on the cumulative ranges
 	float mutationChance = chanceDist(gen);
 
-	if (mutationChance < 0.75f)
-	{
+	if (mutationChance < addRange) {
+		// Addition mutation
 		char randomChar = options[charDist(gen)];
 		int randomPos = posDist(gen);
 		m_Individual.rule['F'][0].first.insert(randomPos, 1, randomChar);
 		//std::cout << "Inserted '" << randomChar << "' at position " << randomPos << std::endl;
 	}
-	else if (!m_Individual.rule['F'][0].first.empty())
-	{
+	else if (mutationChance < deleteRange && !m_Individual.rule['F'][0].first.empty()) {
+		// Deletion mutation
 		int randomPos = posDist(gen);
 		char deletedChar = m_Individual.rule['F'][0].first[randomPos];
 		m_Individual.rule['F'][0].first.erase(randomPos, 1);
 		//std::cout << "Deleted '" << deletedChar << "' from position " << randomPos << std::endl;
 	}
-	else if (m_Individual.rule['F'][0].first.size() > 1) {
-		int pos1 = posDist(gen);
-		int pos2 = posDist(gen);
-		std::swap(m_Individual.rule['F'][0].first[pos1], m_Individual.rule['F'][0].first[pos2]);
+	else if (mutationChance < swapRange && m_Individual.rule['F'][0].first.size() > 1) {
+		// Swap mutaion
+		int size = m_Individual.rule['F'][0].first.size();
+
+		int pos1 = posDist(gen) % size;  
+		int pos2 = posDist(gen) % size;  
+
+		// Ensure pos1 and pos2 are valid
+		if (pos1 >= 0 && pos1 < size && pos2 >= 0 && pos2 < size) {
+			
+
+			// Ensure pos1 and pos2 are not the same (no swap needed if they are equal)
+			if (pos1 != pos2) {
+				std::swap(m_Individual.rule['F'][0].first[pos1], m_Individual.rule['F'][0].first[pos2]);
+				//std::cout << "Swapped positions " << pos1 << " and " << pos2 << std::endl;
+			}
+
+		}
+		else 
+		{
+			std::cout << "Invalid positions: pos1 = " << pos1 << ", pos2 = " << pos2 << std::endl;
+		}
 	}
 
-	//std::cout << "Modified 'F' rule: " << m_Individual.rule['F'][0].first << std::endl;
 
 	UpdateIndividual();
 }
 
 
 
-void Single::MutateWord()
+
+void Single::MutateWord(std::vector<char> symbolSet, int expansionSize)
 {
 	std::stack<char> tempStack = m_Individual.individual;
 	std::vector<int> fIndices;
@@ -123,9 +152,7 @@ void Single::MutateWord()
 	std::uniform_int_distribution<> dist(0, fIndices.size() - 1);
 	int randomIndex = fIndices[dist(gen)];
 
-	std::vector<char> possibleSymbols = { '[', ']', '+', '-', 'F' };
-	std::uniform_int_distribution<> lengthDist(3, 8); // Random expansion length
-	int expansionSize = lengthDist(gen);
+	std::vector<char> possibleSymbols = symbolSet;
 
 	std::vector<char> randomExpansion;
 	for (int i = 0; i < expansionSize; ++i)

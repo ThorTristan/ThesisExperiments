@@ -20,6 +20,8 @@ public:
 
 public:
 
+	void SetMutationParams(std::vector<char> symbolSet, std::vector<int> mutationParams, int expansionSize);
+
 	std::vector<Single> GetPopulation();
 	Individual GetBestIndividual();
 	void PrintGrid(Individual individual);
@@ -44,6 +46,10 @@ private:
 	bool m_Complete;
 
 	MutationType m_MutationChoice;
+
+	std::vector<char> m_SymbolSet;
+	std::vector<int> m_MutationChances;
+	int m_ExpansionSize;
 
 
 private:

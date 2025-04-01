@@ -9,6 +9,7 @@
 #include "helperFunctions.h"
 #include "evolutionRM.h"
 #include "checkpointAnalysis.h"
+#include "parameterTuning.h"
 
 
 bool quit = false;
@@ -23,7 +24,7 @@ int main(int argc, char* argv[])
 	InputManager InputManager;
 	LsystemGenerator LG;
 	Experiment1 experiment(30);
-	
+	Experiment2 experiment2(30);
 	
 
 	std::unordered_map<char, std::vector<std::pair<std::string, float>>> testRules =
@@ -44,18 +45,20 @@ int main(int argc, char* argv[])
 
 	TurtleState initialState{25,49,N};
 	
-	Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, CHECKPOINT_DISTANCE,RULE,CIRCULAR);
+	//Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, CHECKPOINT_DISTANCE,RULE,CIRCULAR);
 
+	//evolution.SetMutationParams({ 'F','+','-','[',']' }, { 60,20,20 }, 1);
+	//experiment.Run();
+	//evolution.Run();
 
-	experiment.Run();
-	
+	experiment2.RunTest({ 'F','+','-','[',']' },  1, { 60,20,20 } );
 		 
 	while (!quit)
 	{
 
 		
 		
-		evolution.Run();
+		//evolution.Run();
 		//RM.prepareScene();
 		//GM.RenderGrid(turtleTest.returnGridVector(), 150, 150, 250, 250, 70, 70);
 

@@ -35,8 +35,8 @@ At some point:
 /*
 
 
-// need to set up the mutation parameters
-// finish setting everything up
+// need to set up the mutation parameters    ..DONE
+// finish setting everything up (set up LOG)
 // then look for research
 // then write everything up
 // write outline whats done and what needs to be done

@@ -60,10 +60,13 @@ public:
         int popSize = 100;
         int generations = 50;
         int ruleIterations = 3;
-        Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, RULE, CIRCULAR);
-        evolution.SetMutationParams(symbolSet, expansionSize, mutationChance);
+        Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, WORD, CIRCULAR);
+        evolution.SetMutationParams(symbolSet,  mutationChance, expansionSize);
 
-        float fitnessScore = evolution.Run();
+        //float fitnessScore = evolution.Run();
+        evolution.Run();
+        float fitnessScore = evolution.GetBestIndividual().Fitness;
+        
         LogResults(symbolSet, expansionSize, mutationChance, fitnessScore);
     }
 
