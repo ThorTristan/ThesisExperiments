@@ -134,5 +134,8 @@
     <ClInclude Include="checkpointAnalysis.h">
       <Filter>Header Files\Experiments</Filter>
     </ClInclude>
+    <ClInclude Include="parameterTuning.h">
+      <Filter>Header Files\Experiments</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

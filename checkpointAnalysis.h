@@ -7,10 +7,10 @@
 
 
 
-class Experiment 
+class Experiment1 
 {
 public:
-    Experiment(int runsPerCombination) : runsPerCombination(runsPerCombination) {}
+    Experiment1(int runsPerCombination) : runsPerCombination(runsPerCombination) {}
 
     void Run()
     {
@@ -22,7 +22,7 @@ public:
 
         for (MutationType mutation : {WORD, RULE})
         {
-            for (CheckpointPattern pattern : {SQUARE, CIRCULAR})
+            for (CheckpointPattern pattern : {LINEAR,CLUSTERED,SQUARE, CIRCULAR,RANDOM,NONE})
             {
                 for (int i = 0; i < runsPerCombination; ++i)
                 {
@@ -32,7 +32,7 @@ public:
                     bestIndividuals.push_back(evolution.GetBestIndividual());
                 }
             }
-        }
+        }	
     }
 
 private:

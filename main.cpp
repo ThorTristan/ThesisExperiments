@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 	
 	InputManager InputManager;
 	LsystemGenerator LG;
-	Experiment experiment(30);
+	Experiment1 experiment(30);
 	
 	
 
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 
 		
 		
-		//evolution.Run();
+		evolution.Run();
 		//RM.prepareScene();
 		//GM.RenderGrid(turtleTest.returnGridVector(), 150, 150, 250, 250, 70, 70);
 

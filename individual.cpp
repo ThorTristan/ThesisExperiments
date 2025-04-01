@@ -16,7 +16,6 @@ std::unordered_map<char, std::vector<std::pair<std::string, float>>> testRules =
 
 
 
-
 Single::Single(std::string startingWord, int ruleIterations, TurtleState initialState, CheckpointPattern pattern)
 {
 	m_StartingWord = startingWord;
