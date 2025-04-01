@@ -25,7 +25,7 @@ At some point:
 
 	Write the experimental proposal
 		* Write draft for checkpoint analysis ..DONE
-		* Write draft for fine\ tuning
+		* Write draft for fine tuning
 		* Write draft for comparing
 
 
@@ -36,11 +36,20 @@ At some point:
 
 
 // need to set up the mutation parameters    ..DONE
-// finish setting everything up (set up LOG)
-// then look for research
+// finish setting everything up (set up LOG)  ..DONE
+// then look for research 
 // then write everything up
 // write outline whats done and what needs to be done
 // + schedule
+
+
+// Wednesday:
+   * add the constraint matrix and play with fitness function
+   * change the selection stuff from the evo algorithms
+   * add the checkpoint patterns  ..DONE
+   * make sure everything works
+   * do more research.
+   * look at the google docs i have
 
 
 

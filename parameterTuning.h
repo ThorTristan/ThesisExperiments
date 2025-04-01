@@ -72,11 +72,11 @@ public:
 
         std::string startingWord = GenerateRandomSequence(symbolSet, 5);
         TurtleState initialState{ 25, 49, N };
-        int popSize = 5;
-        int generations = 5;
+        int popSize = 100;
+        int generations = 100;
         int ruleIterations = 3;
 
-        Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, CIRCULAR);
+        Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, LINEAR);
         evolution.SetMutationParams(symbolSet, mutationChance, expansionSize);
 
         evolution.Run();

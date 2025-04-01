@@ -55,12 +55,13 @@ int FitnessFunction::AreaFunction(std::stack<char> lsystem, TurtleState initialS
 
 
 
-std::vector<Checkpoint> FitnessFunction::CreateCheckpoints(int width, int height, CheckpointPattern pattern, int numCheckpoints) {
+std::vector<Checkpoint> FitnessFunction::CreateCheckpoints(int width, int height, CheckpointPattern pattern, int numCheckpoints) 
+{
+    unsigned int seed = 0;
     std::vector<Checkpoint> checkpoints;
     int midRow = height / 2;
     int midCol = width / 2;
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(seed);  // Use the provided seed for reproducibility
 
     if (pattern == RANDOM) {
         std::uniform_int_distribution<int> distX(0, width);
@@ -99,9 +100,18 @@ std::vector<Checkpoint> FitnessFunction::CreateCheckpoints(int width, int height
                 });
         }
     }
+    else if (pattern == LINEAR) {
+        // Create a linear distribution of checkpoints from left to right (horizontally)
+        int stepX = width / (numCheckpoints + 1); // Spacing between checkpoints
+
+        for (int i = 0; i < numCheckpoints; ++i) {
+            checkpoints.push_back(Checkpoint{ (i + 1) * stepX, midRow });
+        }
+    }
 
     return checkpoints;
 }
+
 
 
 

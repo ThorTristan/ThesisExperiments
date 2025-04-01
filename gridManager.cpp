@@ -44,7 +44,7 @@ void GridManager::RenderGrid(std::vector<int> grid, std::vector<Checkpoint> chec
                 SDL_SetRenderDrawColor(RM.renderer, 0, 0, 0, 255); // Black for empty
                 break;
             case PATH:
-                SDL_SetRenderDrawColor(RM.renderer, 255, 255, 255, 255); // White for path
+                SDL_SetRenderDrawColor(RM.renderer, 255, 255, 255, 200); // White for path
                 break;
             default:
                 SDL_SetRenderDrawColor(RM.renderer, 255, 255, 255, 255); // Black for unknown
@@ -54,8 +54,8 @@ void GridManager::RenderGrid(std::vector<int> grid, std::vector<Checkpoint> chec
 
             SDL_RenderFillRect(RM.renderer, &cellRect);
 
-            SDL_SetRenderDrawColor(RM.renderer, 0, 0, 0, 255);
-            SDL_RenderDrawRect(RM.renderer, &cellRect);
+            //SDL_SetRenderDrawColor(RM.renderer, 0, 0, 0, 255);
+            //SDL_RenderDrawRect(RM.renderer, &cellRect);
         }
     }
 

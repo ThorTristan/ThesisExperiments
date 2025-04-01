@@ -35,11 +35,77 @@ Single::Single(std::string startingWord, int ruleIterations, TurtleState initial
 
 void Single::GenerateRule()
 {
-	m_Individual.rule = testRules;
-	//m_Individual.rule = RL.GenerateSemiRandomRules();
-	//m_Individual.rule = RL.GenerateSemiPOERules();
+	std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules;
 
+	// Fixed rules for non-'F' symbols
+	rules['-'] = { {"-", 1.0f} };
+	rules['+'] = { {"+", 1.0f} };
+	rules['['] = { {"[", 1.0f} };
+	rules[']'] = { {"]", 1.0f} };
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+
+	std::string replacement;
+
+	// We want a string of 14 characters, ensuring balanced brackets
+	std::vector<char> symbols = { 'F', '+', '-', '[', ']', 'F', 'F' };
+
+	// Ensure the rule is exactly 14 characters long
+	while (symbols.size() < 14) {
+		symbols.push_back(rand() % 2 == 0 ? 'F' : (rand() % 2 == 0 ? '+' : '-')); // Add random 'F', '+' or '-'
+	}
+
+	// Shuffle symbols while maintaining balance of brackets
+	std::vector<char> openBrackets, closeBrackets;
+	for (char c : symbols) {
+		if (c == '[') {
+			openBrackets.push_back(c);
+		}
+		else if (c == ']') {
+			closeBrackets.push_back(c);
+		}
+	}
+
+	// Ensuring balanced brackets, add missing closing brackets if necessary
+	if (openBrackets.size() > closeBrackets.size()) {
+		int diff = openBrackets.size() - closeBrackets.size();
+		for (int i = 0; i < diff; ++i) {
+			symbols.push_back(']');
+		}
+	}
+	else if (closeBrackets.size() > openBrackets.size()) {
+		int diff = closeBrackets.size() - openBrackets.size();
+		for (int i = 0; i < diff; ++i) {
+			symbols.push_back('[');
+		}
+	}
+
+	// Shuffle the symbols to randomize their order
+	std::shuffle(symbols.begin(), symbols.end(), gen);
+
+	// Convert the symbols to a string
+	for (char c : symbols) {
+		replacement += c;
+	}
+
+	// Ensure the string is exactly 14 characters long
+	if (replacement.size() > 14) {
+		replacement = replacement.substr(0, 14);  // Truncate if it's too long
+	}
+	else if (replacement.size() < 14) {
+		replacement += std::string(14 - replacement.size(), 'F'); // Pad with 'F' if too short
+	}
+
+	// Set a single rule for 'F' with probability 1.0
+	rules['F'] = { {replacement, 1.0f} };
+
+	m_Individual.rule = rules;
+	//PrintRule();
 }
+
+
+
 
 void Single::InitialiseLsystem()
 {
@@ -191,10 +257,10 @@ void Single::Evaluate(FitnessType chosenFitness)
 {
 	m_Individual.Fitness = 0;
 	std::vector<std::vector<int>> constraintMatrix = {
-{0, 2, 0, 0},
-{2, 0, 0, 0},
-{0, 0, 0, 1},
-{0, 0, 1, 0}
+{0, 1, 2, 1},
+{1, 0, 1, 2},
+{2, 0, 0, 1},
+{1, 2, 1, 0}
 	};
 
 
@@ -208,7 +274,7 @@ void Single::Evaluate(FitnessType chosenFitness)
 		m_Individual.Fitness = (FF.CheckpointDistanceFitness(m_CheckpointLocations, constraintMatrix, m_InitialState, m_Individual.individual, 50, 50)) * 100 + FF.AreaFunction(m_Individual.individual, m_InitialState, 50);
 		break;
 	case CHECKPOINT_DISTANCE:
-		m_Individual.Fitness = FF.EvaluateCheckpointFitness(m_CheckpointLocations,m_InitialState,m_Individual.individual,50,50 );
+		m_Individual.Fitness = FF.EvaluateCheckpointFitness(m_CheckpointLocations, m_InitialState, m_Individual.individual, 50, 50);// +100 * (FF.CheckpointDistanceFitness(m_CheckpointLocations, constraintMatrix, m_InitialState, m_Individual.individual, 50, 50));
 		break;
 	default:
 		std::cerr << "Unknown fitness type!" << std::endl;
