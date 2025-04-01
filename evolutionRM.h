@@ -14,7 +14,7 @@ public:
 	void InitialisePopulation();
 	void Selection();
 	void Mutation();
-	void Evaluation();
+	float Evaluation();
 	void Run();
 
 

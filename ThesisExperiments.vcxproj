@@ -150,6 +150,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="evolutionRM.h" />
     <ClInclude Include="evolutionWM.h" />
+    <ClInclude Include="finalComparison.h" />
     <ClInclude Include="fitnessFunction.h" />
     <ClInclude Include="gridManager.h" />
     <ClInclude Include="helperFunctions.h" />

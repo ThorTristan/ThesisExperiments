@@ -1,0 +1,8 @@
+Symbol Set: F  | Expansion Size: 1 | Mutation Chance: {60, 30, 10} | Mutation Type: RULE | Best Fitness: 1583 | Time Taken (s): 7.01953
+Symbol Set: F  | Expansion Size: 1 | Mutation Chance: {40, 30, 30} | Mutation Type: RULE | Best Fitness: 1833 | Time Taken (s): 6.6606
+Symbol Set: F  | Expansion Size: 1 | Mutation Chance: {50, 40, 10} | Mutation Type: RULE | Best Fitness: 1833 | Time Taken (s): 7.11582
+Symbol Set: F  | Expansion Size: 1 | Mutation Chance: {100, 0, 0} | Mutation Type: RULE | Best Fitness: 1833 | Time Taken (s): 7.10466
+Symbol Set: F  | Expansion Size: 3 | Mutation Chance: {60, 30, 10} | Mutation Type: RULE | Best Fitness: 1833 | Time Taken (s): 6.92929
+Symbol Set: F  | Expansion Size: 3 | Mutation Chance: {40, 30, 30} | Mutation Type: RULE | Best Fitness: 1833 | Time Taken (s): 6.65432
+Symbol Set: F  | Expansion Size: 3 | Mutation Chance: {50, 40, 10} | Mutation Type: RULE | Best Fitness: 1833 | Time Taken (s): 7.45852
+Symbol Set: F  | Expansion Size: 3 | Mutation Chance: {100, 0, 0} | Mutation Type: RULE | Best Fitness: 1666 | Time Taken (s): 7.62151

@@ -1,4 +1,5 @@
 #include "evolutionRM.h"
+#include <fstream>
 
 extern GridManager GM;
 extern RenderManager RM;
@@ -176,12 +177,18 @@ void Evolution::Mutation()
 
 }
 
-void Evolution::Evaluation()
+float Evolution::Evaluation()
 {
+    float totalFitness = 0.0f;
+
     for (auto& individual : m_Population)
     {
         individual.Evaluate(m_ChosenFitness);
+        totalFitness += individual.GetIndividual().Fitness;
     }
+    float averageFitness = totalFitness / m_Population.size();
+
+    return averageFitness;
 }
 
 std::vector<int> Evolution::GrammarToGrid(Individual individual)
@@ -242,41 +249,49 @@ void Evolution::PrintRuleSet(Individual individual)
 
 }
 
+
 void Evolution::Run()
 {
+    float averageFitness = 0.0f;
 
     if (!m_Complete)
     {
         InitialisePopulation();
+
+
+
+        // Open file again for writing
+        std::ofstream logFile("fitness_log.csv", std::ios::app);
+        logFile << "Generation,AverageFitness\n"; // Write the header
 
         for (int i = 0; i < m_NumberOfGenerations; i++)
         {
             SortPopulation();
             RenderIndividual(m_BestIndividual);
 
-
-
             Selection();
             Mutation();
-            Evaluation();
+            averageFitness = Evaluation();
 
+            // Append new data
+            logFile << i + 1 << "," << averageFitness << "\n";
+
+            // Print for debugging
+            std::cout << "Generation: " << i + 1 << "/" << m_NumberOfGenerations
+                << " | Avg Fitness: " << averageFitness << std::endl;
 
             SDL_Delay(100);
-
-            std::cout << "Generation: " << i + 1 << "/" << m_NumberOfGenerations << std::endl;
-
         }
+
+        logFile.close(); // Close file after logging all generations
+
         m_Complete = true;
-
-        //RenderIndividual(m_BestIndividual);
-
-        std::cout << "complete" << std::endl;
-
+        std::cout << "Evolution complete. Fitness data saved to fitness_log.csv" << std::endl;
     }
-
-
-
-
-
 }
+
+
+
+
+
 

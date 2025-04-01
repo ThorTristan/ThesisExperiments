@@ -1,0 +1,53 @@
+Generation,AverageFitness
+1,751
+2,1147.5
+3,1345.25
+4,1458
+5,1558
+Symbol Set,Expansion Size,Mutation Chance,Mutation Type,Best Fitness,Time Taken (s)
+"F ",1,60,30,10,RULE,1700,1.70664
+Generation,AverageFitness
+1,953.25
+2,672.25
+3,794.75
+4,872
+5,986
+"F ",1,40,30,30,RULE,1166,1.66907
+Generation,AverageFitness
+1,891.5
+2,1118
+3,935.5
+4,926.75
+5,861.5
+"F ",1,50,40,10,RULE,1256,1.65911
+Generation,AverageFitness
+1,1147.5
+2,1345.25
+3,1520.5
+4,1724.75
+5,1452.75
+"F ",1,100,0,0,RULE,1833,1.69127
+Generation,AverageFitness
+1,1114.75
+2,1215.25
+3,1295
+4,1007.5
+5,1385.5
+"F ",3,60,30,10,RULE,1475,1.77671
+Generation,AverageFitness
+1,885.75
+2,940.5
+3,1001.75
+4,1348
+5,1432.5
+"F ",3,40,30,30,RULE,1600,1.66391
+Generation,AverageFitness
+1,739.5
+2,952.5
+3,840.25
+4,1180.5
+5,1105.25
+"F ",3,50,40,10,RULE,1266,1.75967
+Generation,AverageFitness
+1,1131
+2,1279.5

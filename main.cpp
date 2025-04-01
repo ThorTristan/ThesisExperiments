@@ -51,7 +51,8 @@ int main(int argc, char* argv[])
 	//experiment.Run();
 	//evolution.Run();
 
-	experiment2.RunTest({ 'F','+','-','[',']' },  1, { 60,20,20 } );
+	//experiment2.RunTest({ 'F','+','-','[',']' },  1, { 60,20,20 } );
+	experiment2.Run();
 		 
 	while (!quit)
 	{

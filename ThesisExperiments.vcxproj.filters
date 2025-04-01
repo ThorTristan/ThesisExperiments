@@ -137,5 +137,8 @@
     <ClInclude Include="parameterTuning.h">
       <Filter>Header Files\Experiments</Filter>
     </ClInclude>
+    <ClInclude Include="finalComparison.h">
+      <Filter>Header Files\Experiments</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
