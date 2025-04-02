@@ -8,20 +8,23 @@
 #include "fitnessFunction.h"
 #include "evolutionRM.h"
 
-class Experiment2 {
+class Experiment2 
+{
 private:
     int iterations;
-    std::ofstream logFile;  // Output file for logging results
+    std::ofstream logFile;  
     FitnessFunction FF;
 
-    std::vector<std::vector<char>> symbolSets = {
+    std::vector<std::vector<char>> symbolSets = 
+    {
         {'F'},
         {'F', '+', '-'},
         {'F', '+', '-', '[', ']'},
         {'F', '[', ']'}
     };
 
-    std::vector<std::vector<int>> mutationChances = {
+    std::vector<std::vector<int>> mutationChances = 
+    {
         {60, 30, 10},
         {40, 30, 30},
         {50, 40, 10},
@@ -31,7 +34,8 @@ private:
     std::vector<int> expansionSizes = { 1, 3, 5, 7 };
 
 public:
-    Experiment2(int iter) : iterations(iter) {
+    Experiment2(int iter) : iterations(iter) 
+    {
         // Open logFile in append mode for CSV output
         logFile.open("fitness_log.csv", std::ios::app);
         if (!logFile) {
@@ -72,8 +76,8 @@ public:
 
         std::string startingWord = GenerateRandomSequence(symbolSet, 5);
         TurtleState initialState{ 25, 49, N };
-        int popSize = 100;
-        int generations = 100;
+        int popSize = 5;
+        int generations = 10;
         int ruleIterations = 3;
 
         Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, LINEAR);

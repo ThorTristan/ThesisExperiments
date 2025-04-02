@@ -158,6 +158,7 @@
     <ClInclude Include="initialiseSDL.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="lsystemCreator.h" />
+    <ClInclude Include="mainHeaderFiles.h" />
     <ClInclude Include="parameterTuning.h" />
     <ClInclude Include="renderManager.h" />
     <ClInclude Include="structs.h" />

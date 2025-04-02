@@ -45,7 +45,7 @@ At some point:
 
 // Wednesday:
    * add the constraint matrix and play with fitness function
-   * change the selection stuff from the evo algorithms
+   * change the selection stuff from the evo algorithms   ...DONE
    * add the checkpoint patterns  ..DONE
    * make sure everything works
    * do more research.

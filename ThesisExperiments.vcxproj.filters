@@ -140,5 +140,8 @@
     <ClInclude Include="finalComparison.h">
       <Filter>Header Files\Experiments</Filter>
     </ClInclude>
+    <ClInclude Include="mainHeaderFiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

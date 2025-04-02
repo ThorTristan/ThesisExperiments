@@ -1,15 +1,5 @@
 #pragma once
-#include "renderManager.h"
-#include "inputManager.h"
-#include "lsystemCreator.h"
-#include "turtle.h"
-#include "gridManager.h"
-#include "fitnessFunction.h"
-#include "individual.h"
-#include "helperFunctions.h"
-#include "evolutionRM.h"
-#include "checkpointAnalysis.h"
-#include "parameterTuning.h"
+#include "mainHeaderFiles.h"
 
 
 bool quit = false;
@@ -27,22 +17,6 @@ int main(int argc, char* argv[])
 	Experiment2 experiment2(30);
 	
 
-	std::unordered_map<char, std::vector<std::pair<std::string, float>>> testRules =
-	{
-	{'F', {{"F+F[+FF][-FF]", 1.0}}},
-	{'-', {{"-", 1.0}}},
-	{'+', {{"+", 1.0}}},
-	{'[', {{"[", 1.0}}},
-	{']', {{"]", 1.0}}}
-	};
-
-
-	int iterations = 3;
-	int popSize = 100;
-	int generations = 50;
-	MutationType mutationChoice = RULE;
-	CheckpointPattern chosenPattern = CIRCULAR;
-
 	TurtleState initialState{25,49,N};
 	
 	//Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, CHECKPOINT_DISTANCE,RULE,CIRCULAR);
@@ -51,8 +25,8 @@ int main(int argc, char* argv[])
 	//experiment.Run();
 	//evolution.Run();
 
-	experiment2.RunTest({ 'F','+','-','[',']' },  5, { 60,20,20 },WORD );
-	//experiment2.Run();
+	//experiment2.RunTest({ 'F','+','-','[',']' },  5, { 60,20,20 },WORD );
+	experiment2.Run();
 		 
 	while (!quit)
 	{
