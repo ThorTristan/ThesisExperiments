@@ -25,8 +25,8 @@ At some point:
 
 	Write the experimental proposal
 		* Write draft for checkpoint analysis ..DONE
-		* Write draft for fine tuning
-		* Write draft for comparing
+		* Write draft for fine tuning  ..DONE
+		* Write draft for comparing  ..DONE
 
 
 */
@@ -37,10 +37,10 @@ At some point:
 
 // need to set up the mutation parameters    ..DONE
 // finish setting everything up (set up LOG)  ..DONE
-// then look for research 
-// then write everything up
-// write outline whats done and what needs to be done
-// + schedule
+// then look for research ..Done
+// then write everything up  ..DONE
+// write outline whats done and what needs to be done  ..DONE
+// + schedule  ..DONE
 
 
 // Wednesday:

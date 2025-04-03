@@ -36,34 +36,41 @@ private:
 public:
     Experiment2(int iter) : iterations(iter) 
     {
-        // Open logFile in append mode for CSV output
+        
         logFile.open("fitness_log.csv", std::ios::app);
-        if (!logFile) {
+        if (!logFile) 
+        {
             std::cerr << "Failed to open log file!" << std::endl;
         }
 
-        // Clear the file first (truncate mode)
+        
         std::ofstream clearFile("fitness_log.csv", std::ios::trunc);
-        clearFile.close(); // Close immediately after clearing
+        clearFile.close(); 
 
-        // Write header to the CSV file (this only happens once)
+        
         logFile << "Symbol Set,Expansion Size,Mutation Chance,Mutation Type,Best Fitness,Time Taken (s)\n";
     }
 
-    ~Experiment2() {
-        // Ensure the file is closed properly
-        if (logFile.is_open()) {
+    ~Experiment2() 
+    {
+        
+        if (logFile.is_open()) 
+        {
             logFile.close();
         }
     }
 
     void Run() {
-        std::vector<MutationType> mutationTypes = { RULE, WORD }; // Define once before looping
+        std::vector<MutationType> mutationTypes = { RULE, WORD }; 
 
-        for (MutationType mutationType : mutationTypes) {  // First loop over mutation types
-            for (const auto& symbolSet : symbolSets) {
-                for (int expansionSize : expansionSizes) {
-                    for (const auto& mutationChance : mutationChances) {
+        for (MutationType mutationType : mutationTypes) 
+        {  
+            for (const auto& symbolSet : symbolSets) 
+            {
+                for (int expansionSize : expansionSizes) 
+                {
+                    for (const auto& mutationChance : mutationChances) 
+                    {
                         RunTest(symbolSet, expansionSize, mutationChance, mutationType);
                     }
                 }
@@ -71,8 +78,9 @@ public:
         }
     }
 
-    void RunTest(const std::vector<char>& symbolSet, int expansionSize, const std::vector<int>& mutationChance, MutationType mutationType) {
-        auto startTime = std::chrono::high_resolution_clock::now(); // Start time
+    void RunTest(const std::vector<char>& symbolSet, int expansionSize, const std::vector<int>& mutationChance, MutationType mutationType) 
+    {
+        auto startTime = std::chrono::high_resolution_clock::now(); 
 
         std::string startingWord = GenerateRandomSequence(symbolSet, 5);
         TurtleState initialState{ 25, 49, N };
@@ -86,43 +94,46 @@ public:
         evolution.Run();
         float fitnessScore = evolution.GetBestIndividual().Fitness;
 
-        auto endTime = std::chrono::high_resolution_clock::now(); // End time
-        std::chrono::duration<double> elapsed = endTime - startTime; // Compute duration
+        auto endTime = std::chrono::high_resolution_clock::now(); 
+        std::chrono::duration<double> elapsed = endTime - startTime; 
 
-        LogResults(symbolSet, expansionSize, mutationChance, mutationType, fitnessScore, elapsed.count()); // Pass elapsed time
+        LogResults(symbolSet, expansionSize, mutationChance, mutationType, fitnessScore, elapsed.count());
     }
 
-    std::string GenerateRandomSequence(const std::vector<char>& symbols, int length) {
+    std::string GenerateRandomSequence(const std::vector<char>& symbols, int length) 
+    {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> dist(0, symbols.size() - 1);
 
         std::string sequence;
-        for (int i = 0; i < length; ++i) {
+        for (int i = 0; i < length; ++i) 
+        {
             sequence += symbols[dist(gen)];
         }
         return sequence;
     }
 
     void LogResults(const std::vector<char>& symbolSet, int expansionSize, const std::vector<int>& mutationChance,
-        MutationType mutationType, float fitness, double timeTaken) {
+        MutationType mutationType, float fitness, double timeTaken) 
+    {
 
-        // Ensure file is open before writing
+   
         if (!logFile.is_open()) {
             std::cerr << "Log file is not open!" << std::endl;
             return;
         }
 
-        // Write results in CSV format
+        
         logFile << "\"";
-        for (char c : symbolSet) logFile << c << " ";  // Symbol Set
+        for (char c : symbolSet) logFile << c << " ";  
         logFile << "\",";
-        logFile << expansionSize << ",";  // Expansion Size
-        logFile << mutationChance[0] << "," << mutationChance[1] << "," << mutationChance[2] << ",";  // Mutation Chance
-        logFile << (mutationType == RULE ? "RULE" : "WORD") << ",";  // Mutation Type
-        logFile << fitness << ",";  // Best Fitness
-        logFile << timeTaken << "\n";  // Time Taken
+        logFile << expansionSize << ",";  
+        logFile << mutationChance[0] << "," << mutationChance[1] << "," << mutationChance[2] << ",";  
+        logFile << (mutationType == RULE ? "RULE" : "WORD") << ",";  
+        logFile << fitness << ",";  
+        logFile << timeTaken << "\n"; 
 
-        logFile.flush(); // Ensure data is written to file immediately
+        logFile.flush(); 
     }
 };

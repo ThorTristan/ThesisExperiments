@@ -4,15 +4,7 @@
 extern GridManager GM;
 extern RenderManager RM;
 extern FitnessFunction FF;
-//extern SceneManager SM;
 
-
-
-/*
-    Next: Work out why the small grids have such high fitness? is it not rendering the whole thing?
-    print out the grid of one of them
-    throw exception when pressing somthing
-*/
 
 
 
@@ -119,7 +111,7 @@ void Evolution::RenderFitness(Individual individual)
         return;
     }
 
-    SDL_Rect rect = { 250, 98, surface->w, surface->h }; // Adjust position as needed
+    SDL_Rect rect = { 250, 98, surface->w, surface->h }; 
     SDL_RenderCopy(RM.renderer, texture, NULL, &rect);
 
     SDL_FreeSurface(surface);
@@ -260,9 +252,9 @@ void Evolution::Run()
 
 
 
-        // Open file again for writing
+        
         std::ofstream logFile("fitness_log.csv", std::ios::app);
-        logFile << "Generation,AverageFitness\n"; // Write the header
+        logFile << "Generation,AverageFitness\n"; 
 
         for (int i = 0; i < m_NumberOfGenerations; i++)
         {
@@ -273,17 +265,17 @@ void Evolution::Run()
             Mutation();
             averageFitness = Evaluation();
 
-            // Append new data
+            
             logFile << i + 1 << "," << averageFitness << "\n";
 
-            // Print for debugging
+            
             std::cout << "Generation: " << i + 1 << "/" << m_NumberOfGenerations
                 << " | Avg Fitness: " << averageFitness << std::endl;
 
             SDL_Delay(100);
         }
 
-        logFile.close(); // Close file after logging all generations
+        logFile.close(); 
 
         m_Complete = true;
         std::cout << "Evolution complete. Fitness data saved to fitness_log.csv" << std::endl;

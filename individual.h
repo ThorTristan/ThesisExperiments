@@ -1,7 +1,4 @@
 #pragma once
-//#include "RandomRuleProgram.h"
-//#include "LSystemEvo.h"
-
 #include "LsystemCreator.h"
 #include "fitnessFunction.h"
 #include "turtle.h"

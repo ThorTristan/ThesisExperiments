@@ -1,7 +1,5 @@
 #include "individual.h"
 
-
-//extern RandomLsystem RL;
 extern FitnessFunction FF;
 
 std::unordered_map<char, std::vector<std::pair<std::string, float>>> testRules =
@@ -37,7 +35,7 @@ void Single::GenerateRule()
 {
 	std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules;
 
-	// Fixed rules for non-'F' symbols
+	
 	rules['-'] = { {"-", 1.0f} };
 	rules['+'] = { {"+", 1.0f} };
 	rules['['] = { {"[", 1.0f} };
@@ -48,60 +46,70 @@ void Single::GenerateRule()
 
 	std::string replacement;
 
-	// We want a string of 14 characters, ensuring balanced brackets
+	
 	std::vector<char> symbols = { 'F', '+', '-', '[', ']', 'F', 'F' };
 
-	// Ensure the rule is exactly 14 characters long
-	while (symbols.size() < 14) {
-		symbols.push_back(rand() % 2 == 0 ? 'F' : (rand() % 2 == 0 ? '+' : '-')); // Add random 'F', '+' or '-'
+	
+	while (symbols.size() < 14) 
+	{
+		symbols.push_back(rand() % 2 == 0 ? 'F' : (rand() % 2 == 0 ? '+' : '-')); 
 	}
 
-	// Shuffle symbols while maintaining balance of brackets
+	
 	std::vector<char> openBrackets, closeBrackets;
-	for (char c : symbols) {
-		if (c == '[') {
+	for (char c : symbols) 
+	{
+		if (c == '[') 
+		{
 			openBrackets.push_back(c);
 		}
-		else if (c == ']') {
+		else if (c == ']') 
+		{
 			closeBrackets.push_back(c);
 		}
 	}
 
-	// Ensuring balanced brackets, add missing closing brackets if necessary
-	if (openBrackets.size() > closeBrackets.size()) {
+
+	if (openBrackets.size() > closeBrackets.size()) 
+	{
 		int diff = openBrackets.size() - closeBrackets.size();
-		for (int i = 0; i < diff; ++i) {
+		for (int i = 0; i < diff; ++i) 
+		{
 			symbols.push_back(']');
 		}
 	}
-	else if (closeBrackets.size() > openBrackets.size()) {
+	else if (closeBrackets.size() > openBrackets.size()) 
+	{
 		int diff = closeBrackets.size() - openBrackets.size();
-		for (int i = 0; i < diff; ++i) {
+		for (int i = 0; i < diff; ++i) 
+		{
 			symbols.push_back('[');
 		}
 	}
 
-	// Shuffle the symbols to randomize their order
+
 	std::shuffle(symbols.begin(), symbols.end(), gen);
 
-	// Convert the symbols to a string
-	for (char c : symbols) {
+	for (char c : symbols) 
+	{
 		replacement += c;
 	}
 
-	// Ensure the string is exactly 14 characters long
-	if (replacement.size() > 14) {
-		replacement = replacement.substr(0, 14);  // Truncate if it's too long
+
+	if (replacement.size() > 14) 
+	{
+		replacement = replacement.substr(0, 14);  
 	}
-	else if (replacement.size() < 14) {
-		replacement += std::string(14 - replacement.size(), 'F'); // Pad with 'F' if too short
+	else if (replacement.size() < 14) 
+	{
+		replacement += std::string(14 - replacement.size(), 'F'); 
 	}
 
-	// Set a single rule for 'F' with probability 1.0
+	
 	rules['F'] = { {replacement, 1.0f} };
 
 	m_Individual.rule = rules;
-	//PrintRule();
+	
 }
 
 
@@ -128,48 +136,52 @@ void Single::MutateRule(std::vector<char> symbolSet, std::vector<int> mutationPa
 	std::uniform_int_distribution<int> posDist(0, m_Individual.rule['F'][0].first.size());
 	std::uniform_real_distribution<float> chanceDist(0.0f, 1.0f);
 
-	// Calculate cumulative mutation ranges
-	int addChance = mutationParams[0];  // 60%
-	int deleteChance = mutationParams[1];  // 20%
-	int swapChance = mutationParams[2];  // 20%
 
-	// Create cumulative ranges
+	int addChance = mutationParams[0];  
+	int deleteChance = mutationParams[1];  
+	int swapChance = mutationParams[2];  
+
+
 	float addRange = addChance / 100.0f;
 	float deleteRange = addRange + (deleteChance / 100.0f);
 	float swapRange = deleteRange + (swapChance / 100.0f);
 
-	// Generate a random mutation type based on the cumulative ranges
+
 	float mutationChance = chanceDist(gen);
 
-	if (mutationChance < addRange) {
-		// Addition mutation
+	// addition
+	if (mutationChance < addRange) 
+	{
 		char randomChar = options[charDist(gen)];
 		int randomPos = posDist(gen);
 		m_Individual.rule['F'][0].first.insert(randomPos, 1, randomChar);
 		//std::cout << "Inserted '" << randomChar << "' at position " << randomPos << std::endl;
 	}
-	else if (mutationChance < deleteRange && !m_Individual.rule['F'][0].first.empty()) {
-		// Deletion mutation
+	else if (mutationChance < deleteRange && !m_Individual.rule['F'][0].first.empty()) 
+	{
+		// deletion
 		int randomPos = posDist(gen);
 		char deletedChar = m_Individual.rule['F'][0].first[randomPos];
 		m_Individual.rule['F'][0].first.erase(randomPos, 1);
 		//std::cout << "Deleted '" << deletedChar << "' from position " << randomPos << std::endl;
 	}
-	else if (mutationChance < swapRange && m_Individual.rule['F'][0].first.size() > 1) {
+	else if (mutationChance < swapRange && m_Individual.rule['F'][0].first.size() > 1) 
+	{
 		// Swap mutaion
 		int size = m_Individual.rule['F'][0].first.size();
 
 		int pos1 = posDist(gen) % size;  
 		int pos2 = posDist(gen) % size;  
 
-		// Ensure pos1 and pos2 are valid
-		if (pos1 >= 0 && pos1 < size && pos2 >= 0 && pos2 < size) {
+
+		if (pos1 >= 0 && pos1 < size && pos2 >= 0 && pos2 < size) 
+		{
 			
 
-			// Ensure pos1 and pos2 are not the same (no swap needed if they are equal)
-			if (pos1 != pos2) {
+			if (pos1 != pos2) 
+			{
 				std::swap(m_Individual.rule['F'][0].first[pos1], m_Individual.rule['F'][0].first[pos2]);
-				//std::cout << "Swapped positions " << pos1 << " and " << pos2 << std::endl;
+
 			}
 
 		}

@@ -34,9 +34,6 @@
     <Filter Include="Header Files\Algorithms">
       <UniqueIdentifier>{8cee7148-4fed-4eea-b584-5f6e0cb1c012}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Algorithms\WordMutationAlgorithm">
-      <UniqueIdentifier>{8024a1b4-e7a3-4d8d-aba9-49ac4a65b4d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Algorithms\RuleMutationAlgorithm">
       <UniqueIdentifier>{95907155-eb80-4088-b99f-1fbe7d191b63}</UniqueIdentifier>
     </Filter>
@@ -124,9 +121,6 @@
     </ClInclude>
     <ClInclude Include="evolutionRM.h">
       <Filter>Header Files\Algorithms\RuleMutationAlgorithm</Filter>
-    </ClInclude>
-    <ClInclude Include="evolutionWM.h">
-      <Filter>Header Files\Algorithms\WordMutationAlgorithm</Filter>
     </ClInclude>
     <ClInclude Include="ToDo.h">
       <Filter>Header Files</Filter>
