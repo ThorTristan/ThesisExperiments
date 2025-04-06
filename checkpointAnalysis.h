@@ -8,9 +8,7 @@
 #include <string>
 
 
-// now i need to render it better
-// set the parameters
-// then i can start the run :DDD
+// Now get rid of none and maybe do a random one ?
 
 
 class Experiment1
@@ -47,7 +45,7 @@ public:
     {
         int popSize = 100;
         int iterations = 3;
-        int generations = 20;
+        int generations = 50;
 
         TurtleState initialState{ 25, 49, N };
 
@@ -58,9 +56,15 @@ public:
             {1, 2, 1, 0}
         };
 
-        for (MutationType mutation : {WORD, RULE})
+        std::vector<MutationType> mutationTypes = { WORD, RULE };
+        std::vector<CheckpointPattern> patterns = { LINEAR, SQUARE, CIRCULAR, NONE };
+
+        int totalRuns = mutationTypes.size() * patterns.size() * runsPerCombination;
+        int currentRun = 1;
+
+        for (MutationType mutation : mutationTypes)
         {
-            for (CheckpointPattern pattern : {LINEAR, SQUARE, CIRCULAR, NONE})
+            for (CheckpointPattern pattern : patterns)
             {
                 for (int i = 0; i < runsPerCombination; ++i)
                 {
@@ -85,6 +89,9 @@ public:
 
                     // Log all the results
                     LogResults(mutation, pattern, bestFitness, bestIndividualWord, bestIndividualRule, bestIndividualStartingRule, elapsed.count());
+
+                    std::cout << "Completed run " << currentRun << " / " << totalRuns << "\n";
+                    ++currentRun;
                 }
             }
         }

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <ctime>  // for std::time and std::strftime
 #include <sstream> // for std::ostringstream
+#define _CRT_SECURE_NO_WARNINGS
 
 extern GridManager GM;
 extern RenderManager RM;
@@ -13,12 +14,12 @@ extern FitnessFunction FF;
 std::string GetTimestamp()
 {
     std::time_t now = std::time(nullptr);
-    std::tm* timeinfo = std::localtime(&now);
+    std::tm timeinfo;
+    localtime_s(&timeinfo, &now);  // Safe, no warning
     char buffer[32];
-    std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", timeinfo);
+    std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", &timeinfo);
     return std::string(buffer);
 }
-
 
 
 
