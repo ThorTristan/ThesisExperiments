@@ -3,20 +3,21 @@
 #include "gridManager.h"
 #include "renderManager.h"
 //#include "SceneManager.h"
-
+#include "map"
 class Evolution
 {
 
 public:
 
-	Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation, CheckpointPattern chosenPatern);
+	Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation, CheckpointPattern chosenPatern, std::vector<std::vector<int>> matrix);
 
 	void InitialisePopulation();
 	void Selection();
 	void Mutation();
 	float Evaluation();
-	void Run();
-
+	void Run(std::vector<std::vector<Individual>>& BestEachGeneration, int runIndex);
+	std::string SerializeRules(const std::unordered_map<char, std::vector<std::pair<std::string, float>>>& ruleMap);
+	std::string StackToString(const std::stack<char>& s);
 
 public:
 
@@ -31,7 +32,8 @@ private:
 
 	void SortPopulation();
 	void RenderIndividual(Individual individual);
-	void RenderFitness(Individual individual);
+	void RenderFitness(Individual individual, int xPos, int yPos);
+	void RenderText(const std::string& numberText, int xPos, int yPos, const std::string& text);
 	std::vector<int> GrammarToGrid(Individual individual);
 
 private:
@@ -43,6 +45,9 @@ private:
 	int m_RuleIterations;
 	TurtleState m_InitialState;
 	FitnessType m_ChosenFitness;
+
+	std::vector<std::vector<int>> m_ChosenMatrix;
+
 	bool m_Complete;
 
 	MutationType m_MutationChoice;
@@ -52,10 +57,15 @@ private:
 	int m_ExpansionSize;
 
 
+	float m_AverageFitness;
+	int m_CurrentGeneration;
+
 private:
 
 	std::vector<Single> m_Population;
 	Individual m_BestIndividual;
 	CheckpointPattern m_Pattern;
+
+
 
 };

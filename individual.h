@@ -24,6 +24,8 @@ struct Individual
 	std::stack<char> individual;
 	float Fitness;
 	std::unordered_map<char, std::vector<std::pair<std::string, float>>> rule;
+	std::unordered_map<char, std::vector<std::pair<std::string, float>>> StartingRule;
+
 
 
 };
@@ -39,7 +41,7 @@ public:
 
 	void MutateWord(std::vector<char> symbolSet, int expansionSize);
 
-	void Evaluate(FitnessType chosenFitness);
+	void Evaluate(FitnessType chosenFitness, std::vector<std::vector<int>> constraintMatrix);
 
 
 public:

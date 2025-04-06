@@ -22,11 +22,11 @@ int main(int argc, char* argv[])
 	//Evolution evolution = Evolution(popSize, "F-F+F", iterations, initialState, generations, CHECKPOINT_DISTANCE,RULE,CIRCULAR);
 
 	//evolution.SetMutationParams({ 'F','+','-','[',']' }, { 60,20,20 }, 1);
-	//experiment.Run();
+	experiment.Run();
 	//evolution.Run();
 
 	//experiment2.RunTest({ 'F','+','-','[',']' },  5, { 60,20,20 },WORD );
-	experiment2.Run();
+	//experiment2.Run();
 		 
 	while (!quit)
 	{

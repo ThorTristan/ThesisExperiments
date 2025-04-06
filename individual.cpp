@@ -120,9 +120,11 @@ void Single::InitialiseLsystem()
 	LsystemGenerator LS = LsystemGenerator();
 
 	LS.Generate(m_StartingWord, m_RuleIterations, m_Individual.rule);
-
+	m_Individual.StartingRule = m_Individual.rule;
 	std::stack<char> finalStack = LS.ReturnFinalStack();
 	m_Individual.individual = finalStack;
+
+	
 }
 
 // idea: swap two neighbouring symbols
@@ -265,15 +267,9 @@ void Single::MutateWord(std::vector<char> symbolSet, int expansionSize)
 
 
 
-void Single::Evaluate(FitnessType chosenFitness)
+void Single::Evaluate(FitnessType chosenFitness, std::vector<std::vector<int>> constraintMatrix)
 {
 	m_Individual.Fitness = 0;
-	std::vector<std::vector<int>> constraintMatrix = {
-{0, 1, 2, 1},
-{1, 0, 1, 2},
-{2, 0, 0, 1},
-{1, 2, 1, 0}
-	};
 
 
 

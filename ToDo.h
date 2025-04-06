@@ -4,6 +4,29 @@
 /*
 
 
+
+		For containt matrix and checkpoint analysis:
+			neeed to store the individuals somewhere so i can look at them.
+
+
+
+		Need a way to view the mazes
+
+
+		And need to fix the ff2 
+
+
+
+
+
+
+
+
+
+
+
+
+
 First First:
 
 	Change the word mutation method into an evo algorithm   ..DONE

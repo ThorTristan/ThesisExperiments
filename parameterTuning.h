@@ -33,6 +33,13 @@ private:
 
     std::vector<int> expansionSizes = { 1, 3, 5, 7 };
 
+    std::vector<std::vector<int>> constraintMatrix = {
+{0, 1, 2, 1},
+{1, 0, 1, 2},
+{2, 0, 0, 1},
+{1, 2, 1, 0}
+    };
+
 public:
     Experiment2(int iter) : iterations(iter) 
     {
@@ -88,10 +95,10 @@ public:
         int generations = 10;
         int ruleIterations = 3;
 
-        Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, LINEAR);
+        Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, LINEAR, constraintMatrix);
         evolution.SetMutationParams(symbolSet, mutationChance, expansionSize);
 
-        evolution.Run();
+        //evolution.Run();
         float fitnessScore = evolution.GetBestIndividual().Fitness;
 
         auto endTime = std::chrono::high_resolution_clock::now(); 

@@ -137,5 +137,8 @@
     <ClInclude Include="mainHeaderFiles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="constraintMatrixAnalysis.h">
+      <Filter>Header Files\Experiments</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
