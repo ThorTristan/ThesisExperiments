@@ -337,6 +337,7 @@ void Evolution::PrintRuleSet(Individual individual)
 
 void Evolution::Run(std::vector<std::vector<Individual>>& bestEachGeneration, int runIndex)
 {
+    int counter = 0;
     float averageFitness = 0.0f;
 
     if (!m_Complete)
@@ -369,9 +370,10 @@ void Evolution::Run(std::vector<std::vector<Individual>>& bestEachGeneration, in
 
             // Store the best individual for this generation in the respective runIndex
             //bestEachGeneration[runIndex].push_back(m_BestIndividual);
-            if (i == 0)
+            
+            if (counter == 1 && m_BestIndividual.Fitness == 2000)
             {
-                std::string fileName = "window_capture_run_" + std::to_string(runIndex) + "_START_" + GetTimestamp() + ".png";
+                std::string fileName = "window_capture_run_Fitness2000" + std::to_string(runIndex) + "_START_" + GetTimestamp() + ".png";
                 SaveWindowAsImage(RM.renderer, 800, 500, fileName);
             }
 
@@ -382,7 +384,7 @@ void Evolution::Run(std::vector<std::vector<Individual>>& bestEachGeneration, in
             }
         }
 
-        std::string fileName = "window_capture_run_" + std::to_string(runIndex) + "_END_" + GetTimestamp() + ".png";
+        std::string fileName = "window_capture_run_FitnessOptimized" + std::to_string(runIndex) + "_END_" + GetTimestamp() + ".png";
         SaveWindowAsImage(RM.renderer, 800, 500, fileName);
 
         logFile.close();  // Close the log file after all generations are processed

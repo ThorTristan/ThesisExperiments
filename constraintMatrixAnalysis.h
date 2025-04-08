@@ -10,9 +10,10 @@
 
 
 //testing different constraint matrices
-// first i need to test the FF2
-// so i need to find an l system that covers all checkpoints
-// then start testing
+//need pic when first 2k for comparison
+//then pick on generation 100
+// for each screenshot i want the distances between the checkpoints (or the genes so i can replicate)
+// I need to fiddle with the constraint matrices.
 
 std::vector<std::vector<std::vector<int>>> constraintMatrices = {
     { // First constraint matrix

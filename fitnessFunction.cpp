@@ -161,6 +161,8 @@ float FitnessFunction::CheckpointDistanceFitness(std::vector<Checkpoint> checkpo
     std::cout << "Maximise Sum: " << maxSum << "\n";
     std::cout << "---------------------\n";
 
+
+
     return ((maxSum + 1) / (minSum + 1)) * 100; // Return a ratio, adjusting to avoid division by zero
 }
 
