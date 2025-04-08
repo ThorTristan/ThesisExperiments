@@ -143,6 +143,7 @@
     <ClCompile Include="lsystemCreator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="renderManager.cpp" />
+    <ClCompile Include="Testing.cpp" />
     <ClCompile Include="turtle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="parameterTuning.h" />
     <ClInclude Include="renderManager.h" />
     <ClInclude Include="structs.h" />
+    <ClInclude Include="Testing.h" />
     <ClInclude Include="ToDo.h" />
     <ClInclude Include="turtle.h" />
   </ItemGroup>

@@ -27,6 +27,7 @@ public:
 	Individual GetBestIndividual();
 	void PrintGrid(Individual individual);
 	void PrintRuleSet(Individual individual);
+	void PrintIndividual(std::stack<char> ind);
 
 private:
 

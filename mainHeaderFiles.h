@@ -10,3 +10,6 @@
 #include "evolutionRM.h"
 #include "checkpointAnalysis.h"
 #include "parameterTuning.h"
+#include "Testing.h"
+
+#include "constraintMatrixAnalysis.h"

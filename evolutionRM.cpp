@@ -21,7 +21,22 @@ std::string GetTimestamp()
     return std::string(buffer);
 }
 
+void Evolution::PrintIndividual(std::stack<char> ind)
+{
+    std::string output;
 
+    // Pop from a copy so we don't modify the original
+    while (!ind.empty())
+    {
+        output += ind.top();
+        ind.pop();
+    }
+
+    // The characters come out in reverse, since it's a stack
+    std::reverse(output.begin(), output.end());
+
+    std::cout << "Individual: " << output << std::endl;
+}
 
 Evolution::Evolution(int popSize, std::string startingWord, int ruleIterations, TurtleState initialState, int numGenerations, FitnessType chosenFitness, MutationType chosenMutation, CheckpointPattern chosenPattern, std::vector<std::vector<int>> matrix)
 {

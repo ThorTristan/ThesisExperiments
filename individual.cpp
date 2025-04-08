@@ -4,7 +4,7 @@ extern FitnessFunction FF;
 
 std::unordered_map<char, std::vector<std::pair<std::string, float>>> testRules =
 {
-	{'F', {{"F+F[+FF][-FF]", 1.0}}},
+	{'F', {{"F-F[[F-F]F[-FF]", 1.0}}},
 	{'-', {{"-", 1.0}}},
 	{'+', {{"+", 1.0}}},
 	{'[', {{"[", 1.0}}},
@@ -35,7 +35,7 @@ void Single::GenerateRule()
 {
 	std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules;
 
-	
+
 	rules['-'] = { {"-", 1.0f} };
 	rules['+'] = { {"+", 1.0f} };
 	rules['['] = { {"[", 1.0f} };
@@ -46,42 +46,42 @@ void Single::GenerateRule()
 
 	std::string replacement;
 
-	
+
 	std::vector<char> symbols = { 'F', '+', '-', '[', ']', 'F', 'F' };
 
-	
-	while (symbols.size() < 14) 
+
+	while (symbols.size() < 14)
 	{
-		symbols.push_back(rand() % 2 == 0 ? 'F' : (rand() % 2 == 0 ? '+' : '-')); 
+		symbols.push_back(rand() % 2 == 0 ? 'F' : (rand() % 2 == 0 ? '+' : '-'));
 	}
 
-	
+
 	std::vector<char> openBrackets, closeBrackets;
-	for (char c : symbols) 
+	for (char c : symbols)
 	{
-		if (c == '[') 
+		if (c == '[')
 		{
 			openBrackets.push_back(c);
 		}
-		else if (c == ']') 
+		else if (c == ']')
 		{
 			closeBrackets.push_back(c);
 		}
 	}
 
 
-	if (openBrackets.size() > closeBrackets.size()) 
+	if (openBrackets.size() > closeBrackets.size())
 	{
 		int diff = openBrackets.size() - closeBrackets.size();
-		for (int i = 0; i < diff; ++i) 
+		for (int i = 0; i < diff; ++i)
 		{
 			symbols.push_back(']');
 		}
 	}
-	else if (closeBrackets.size() > openBrackets.size()) 
+	else if (closeBrackets.size() > openBrackets.size())
 	{
 		int diff = closeBrackets.size() - openBrackets.size();
-		for (int i = 0; i < diff; ++i) 
+		for (int i = 0; i < diff; ++i)
 		{
 			symbols.push_back('[');
 		}
@@ -90,26 +90,27 @@ void Single::GenerateRule()
 
 	std::shuffle(symbols.begin(), symbols.end(), gen);
 
-	for (char c : symbols) 
+	for (char c : symbols)
 	{
 		replacement += c;
 	}
 
 
-	if (replacement.size() > 14) 
+	if (replacement.size() > 14)
 	{
-		replacement = replacement.substr(0, 14);  
+		replacement = replacement.substr(0, 14);
 	}
-	else if (replacement.size() < 14) 
+	else if (replacement.size() < 14)
 	{
-		replacement += std::string(14 - replacement.size(), 'F'); 
+		replacement += std::string(14 - replacement.size(), 'F');
 	}
 
-	
+
 	rules['F'] = { {replacement, 1.0f} };
 
 	m_Individual.rule = rules;
-	
+	//m_Individual.rule = testRules;
+
 }
 
 
@@ -271,7 +272,7 @@ void Single::Evaluate(FitnessType chosenFitness, std::vector<std::vector<int>> c
 {
 	m_Individual.Fitness = 0;
 
-
+	int preFitness = FF.EvaluateCheckpointFitness(m_CheckpointLocations, m_InitialState, m_Individual.individual, 50, 50);
 
 	switch (chosenFitness)
 	{
@@ -282,7 +283,17 @@ void Single::Evaluate(FitnessType chosenFitness, std::vector<std::vector<int>> c
 		m_Individual.Fitness = (FF.CheckpointDistanceFitness(m_CheckpointLocations, constraintMatrix, m_InitialState, m_Individual.individual, 50, 50)) * 100 + FF.AreaFunction(m_Individual.individual, m_InitialState, 50);
 		break;
 	case CHECKPOINT_DISTANCE:
-		m_Individual.Fitness = FF.EvaluateCheckpointFitness(m_CheckpointLocations, m_InitialState, m_Individual.individual, 50, 50);// +100 * (FF.CheckpointDistanceFitness(m_CheckpointLocations, constraintMatrix, m_InitialState, m_Individual.individual, 50, 50));
+
+		if (preFitness < 2000)
+		{
+			m_Individual.Fitness = preFitness;
+			break;
+		}
+		else
+		{
+			m_Individual.Fitness = preFitness +(FF.CheckpointDistanceFitness(m_CheckpointLocations, constraintMatrix, m_InitialState, m_Individual.individual, 50, 50));
+			break;
+		}
 		break;
 	default:
 		std::cerr << "Unknown fitness type!" << std::endl;
@@ -303,7 +314,7 @@ void Single::UpdateIndividual()
 	LS.Generate(m_StartingWord, m_RuleIterations, m_Individual.rule);
 
 
-	std::stack<char> finalStack = LS.ReturnFinalStack(); // problem is here
+	std::stack<char> finalStack = LS.ReturnFinalStack(); 
 	m_Individual.individual = finalStack;
 
 

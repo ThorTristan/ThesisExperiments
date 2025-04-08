@@ -84,6 +84,9 @@
     <ClCompile Include="checkpointAnalysis.cpp">
       <Filter>Source Files\Experiments</Filter>
     </ClCompile>
+    <ClCompile Include="Testing.cpp">
+      <Filter>Source Files\Experiments</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="constraintMatrixAnalysis.h">
+      <Filter>Header Files\Experiments</Filter>
+    </ClInclude>
+    <ClInclude Include="Testing.h">
       <Filter>Header Files\Experiments</Filter>
     </ClInclude>
   </ItemGroup>
