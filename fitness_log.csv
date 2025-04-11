@@ -1,1 +1,4 @@
 Symbol Set,Expansion Size,Mutation Chance,Mutation Type,Best Fitness,Time Taken (s)
+"F ",1,70,15,15,RULE,1625,4.91555
+"F ",1,25,50,25,RULE,1204,5.73519
+"F ",1,50,25,25,RULE,866,4.71022

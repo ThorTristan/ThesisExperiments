@@ -4,6 +4,9 @@
 #include "renderManager.h"
 //#include "SceneManager.h"
 #include "map"
+#include "json.hpp"
+
+using json = nlohmann::json;
 class Evolution
 {
 
@@ -15,9 +18,11 @@ public:
 	void Selection();
 	void Mutation();
 	float Evaluation();
-	void Run(std::vector<std::vector<Individual>>& BestEachGeneration, int runIndex);
+	void Run(int runIndex);
 	std::string SerializeRules(const std::unordered_map<char, std::vector<std::pair<std::string, float>>>& ruleMap);
 	std::string StackToString(const std::stack<char>& s);
+	std::string ConvertStackToString(std::stack<char> stack);
+	json ConvertRuleMap(const std::unordered_map<char, std::vector<std::pair<std::string, float>>>& ruleMap);
 
 public:
 
@@ -49,13 +54,12 @@ private:
 
 	std::vector<std::vector<int>> m_ChosenMatrix;
 
-	bool m_Complete;
-
 	MutationType m_MutationChoice;
-
 	std::vector<char> m_SymbolSet;
 	std::vector<int> m_MutationChances;
 	int m_ExpansionSize;
+
+	bool m_Complete;
 
 
 	float m_AverageFitness;

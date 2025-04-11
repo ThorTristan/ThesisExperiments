@@ -2,9 +2,8 @@
 #include <fstream>
 #include <ctime>  // for std::time and std::strftime
 #include <sstream> // for std::ostringstream
-#include <nlohmann/json.hpp> 
+//#include <nlohmann/json.hpp> 
 
-using json = nlohmann::json;
 
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -338,8 +337,8 @@ void Evolution::PrintRuleSet(Individual individual)
 }
 
 // pass in the best individual of each generation
-
-void Evolution::Run(std::vector<std::vector<Individual>>& bestEachGeneration, int runIndex)
+// need to log starting rule and if its word etc
+void Evolution::Run(int runIndex)
 {
     int counter = 0;
     float averageFitness = 0.0f;
@@ -370,12 +369,36 @@ void Evolution::Run(std::vector<std::vector<Individual>>& bestEachGeneration, in
             ss << std::hex << hashValue;
             std::string hashHex = ss.str();
 
+            std::string mutateVersion = "default";
+
+            if (m_MutationChoice == WORD)
+            {
+                mutateVersion = "WORD";
+            }
+            else if (m_MutationChoice == RULE)
+            {
+                mutateVersion = "RULE";
+            }
+            else
+            {
+                mutateVersion = "default";
+            }
+
+            std::vector<std::string> symbolSetStr;
+            for (char c : m_SymbolSet)
+            {
+                symbolSetStr.push_back(std::string(1, c));
+            }
+
+
             // log CSV
             logFile << runIndex << "," << i + 1 << "," << m_BestIndividual.Fitness << ","
-                << m_AverageFitness << "," << hashHex << "\n";
+                << m_AverageFitness << "," << mutateVersion << "," << m_ExpansionSize << "," << hashHex << "\n";
 
-            // save JSON
-            std::string jsonFilename = "genomes_run_" + std::to_string(runIndex) + ".json";
+            // save json
+            std::string timestamp = GetTimestamp();
+            std::string jsonFilename = "genomes_run_" + std::to_string(runIndex) + "_" + timestamp + ".json";
+
             std::ifstream existing(jsonFilename);
             json genomeData;
             if (existing.is_open()) {
@@ -383,9 +406,17 @@ void Evolution::Run(std::vector<std::vector<Individual>>& bestEachGeneration, in
                 existing.close();
             }
 
+
+
+
             genomeData[hashHex] = {
                 {"genetic_code", geneticCode},
-                {"rule_map", ConvertRuleMap(m_BestIndividual.rule)}
+                {"rule_map", ConvertRuleMap(m_BestIndividual.rule)},
+                {"starting_rule", ConvertRuleMap(m_BestIndividual.StartingRule)},
+                {"mutation_choice", mutateVersion},
+                {"symbol_set", symbolSetStr},
+                {"mutation_chances", m_MutationChances},
+                {"expansion_size", m_ExpansionSize}
             };
 
             std::ofstream genomeOut(jsonFilename);
@@ -399,33 +430,21 @@ void Evolution::Run(std::vector<std::vector<Individual>>& bestEachGeneration, in
             // the best individual (including the fitness) for each generation 
 
        
-            logFile << runIndex << "," << i + 1 << "," << m_BestIndividual.Fitness << "\n";
+            //logFile << runIndex << "," << i + 1 << "," << m_BestIndividual.Fitness << "\n";
 
             std::cout << "Generation: " << i + 1 << "/" << m_NumberOfGenerations
                 << " | Avg Fitness: " << m_AverageFitness << std::endl;
 
             m_CurrentGeneration = i+1;
             
-            //SDL_Delay(100);  // Delay to visualize
-
-
-            
-            //if (counter == 0 && m_BestIndividual.Fitness > 1999)
-            //{
-            //    FF.ExportDistancesToCSV("distances"+std::to_string(runIndex) + "_START_" + GetTimestamp() + ".csv",runIndex);
-            //    std::string fileName = "window_capture_run_Fitness2000" + std::to_string(runIndex) + "_START_" + GetTimestamp() + ".png";
-            //    SaveWindowAsImage(RM.renderer, 800, 500, fileName);
-            //    std::cout << "First log" << std::endl;
-            //    counter++;
-            //}
 
 
 
         }
 
         std::string fileName = "window_capture_run_FitnessOptimized" + std::to_string(runIndex) + "_END_" + GetTimestamp() + ".png";
-        FF.ExportDistancesToCSV("distances" + std::to_string(runIndex) + "_END_" + GetTimestamp() + ".csv", runIndex);
-        std::cout << "second log" << std::endl;
+        //FF.ExportDistancesToCSV("distances" + std::to_string(runIndex) + "_END_" + GetTimestamp() + ".csv", runIndex);
+        //std::cout << "second log" << std::endl;
 
 
         SaveWindowAsImage(RM.renderer, 800, 500, fileName);
@@ -486,7 +505,7 @@ void Evolution::Run(std::vector<std::vector<Individual>>& bestEachGeneration, in
 //}
 //
 //// Convert stack<char> to string
-std::string ConvertStackToString(std::stack<char> stack) {
+std::string Evolution::ConvertStackToString(std::stack<char> stack) {
     std::vector<char> chars;
     while (!stack.empty()) {
         chars.push_back(stack.top());
@@ -496,7 +515,7 @@ std::string ConvertStackToString(std::stack<char> stack) {
     return std::string(chars.begin(), chars.end());
 }
 
-json ConvertRuleMap(const std::unordered_map<char, std::vector<std::pair<std::string, float>>>& ruleMap) {
+json Evolution::ConvertRuleMap(const std::unordered_map<char, std::vector<std::pair<std::string, float>>>& ruleMap) {
     json j;
     for (const auto& entry : ruleMap) {
         char symbol = entry.first;
@@ -527,7 +546,7 @@ std::string Evolution::SerializeRules(const std::unordered_map<char, std::vector
 
 
 
-void converIndividual(Individual individual)
+void convertIndividual(Individual individual)
 {
 
     individual.Fitness;

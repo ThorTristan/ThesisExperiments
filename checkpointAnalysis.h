@@ -73,7 +73,7 @@ public:
                     Evolution evolution(popSize, "F-F+F", iterations, initialState, generations, CHECKPOINT_DISTANCE, mutation, pattern, constraintMatrix);
                     
                     evolution.SetMutationParams({ 'F','+','-','[',']' }, { 60,20,20 }, 5);
-                    evolution.Run(bestEachGeneration, i);
+                    evolution.Run(i);
 
                     float bestFitness = evolution.GetBestIndividual().Fitness;
 

@@ -20,6 +20,11 @@ private:
     std::ofstream logFile;  
     FitnessFunction FF;
 
+    int totalRuns = 0;
+    int currentRun = 0;
+
+    int runIndex;
+
     std::vector<std::vector<char>> symbolSets = 
     {
         {'F'},
@@ -30,10 +35,12 @@ private:
 
     std::vector<std::vector<int>> mutationChances = 
     {
-        {60, 30, 10}, // Mainly Addition
-        {30, 40, 30}, // Higher Deletion
-        {40, 30, 30}, // Higher Addition
-        {30, 30, 40} // Higher Swapping
+        {70, 15, 15}, // Mainly Addition
+        {25, 50, 25}, // Higher Deletion
+        {50, 25, 25}, // Higher Addition
+        {25, 25, 50}, // Higher Swapping
+        {15, 15, 70}, // mainly Swapping
+        {34, 33, 33} // balanced
     };
 
     std::vector<int> expansionSizes = { 1, 3, 5, 7 };
@@ -57,9 +64,16 @@ public:
             std::cerr << "Failed to open log file!" << std::endl;
         }
 
+        std::ofstream clearCSV("best_individuals_log.csv", std::ios::trunc);
+        clearCSV << "Run Index,Generation,Best Fitness,Genetic Code\n"; // header again
+
+        std::ofstream clearJSON("genetic_log_run_" + std::to_string(runIndex) + ".json", std::ios::trunc);
+        clearJSON << "{}"; // empty JSON object to start fresh
         
         std::ofstream clearFile("fitness_log.csv", std::ios::trunc);
         clearFile.close(); 
+
+        totalRuns = symbolSets.size() * expansionSizes.size() * mutationChances.size() * 2; // 2 for RULE and WORD
 
         
         logFile << "Symbol Set,Expansion Size,Mutation Chance,Mutation Type,Best Fitness,Time Taken (s)\n";
@@ -86,6 +100,7 @@ public:
                     for (const auto& mutationChance : mutationChances) 
                     {
                         RunTest(symbolSet, expansionSize, mutationChance, mutationType);
+                        runIndex++;
                     }
                 }
             }
@@ -98,20 +113,24 @@ public:
 
         std::string startingWord = GenerateRandomSequence(symbolSet, 5);
         TurtleState initialState{ 25, 49, N };
-        int popSize = 5;
-        int generations = 10;
+        int popSize = 100;
+        int generations = 100;
         int ruleIterations = 3;
 
         Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, LINEAR, constraintMatrix);
         evolution.SetMutationParams(symbolSet, mutationChance, expansionSize);
 
-        //evolution.Run();
+        evolution.Run(runIndex);
         float fitnessScore = evolution.GetBestIndividual().Fitness;
 
         auto endTime = std::chrono::high_resolution_clock::now(); 
         std::chrono::duration<double> elapsed = endTime - startTime; 
 
         LogResults(symbolSet, expansionSize, mutationChance, mutationType, fitnessScore, elapsed.count());
+
+        std::cout << "  Running experiment " << currentRun + 1 << " of " << totalRuns
+            << " (" << totalRuns - currentRun - 1 << " left)" << std::endl;
+        currentRun++;
     }
 
     std::string GenerateRandomSequence(const std::vector<char>& symbols, int length) 
