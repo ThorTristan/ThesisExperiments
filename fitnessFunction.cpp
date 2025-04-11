@@ -2,6 +2,8 @@
 #include "queue"
 #include "turtle.h"
 #include "Testing.h"
+#include <sstream>
+#include <fstream>
 
 extern Testing testing;
 
@@ -94,7 +96,7 @@ std::vector<Checkpoint> FitnessFunction::CreateCheckpoints(int width, int height
             int x = static_cast<int>(midCol + radius * cos(angle));
             int y = static_cast<int>(midRow + radius * sin(angle));
 
-            // Print the checkpoint coordinates
+
             //std::cout << "Checkpoint " << i << ": (" << x << ", " << y << ")\n";
 
             checkpoints.push_back(Checkpoint{ x, y });
@@ -116,8 +118,19 @@ std::vector<Checkpoint> FitnessFunction::CreateCheckpoints(int width, int height
 
 
 
+void FitnessFunction::setEnableLogging(bool b)
+{
+    enableLogging = b;
+}
+
+
+
 // min max
-float FitnessFunction::CheckpointDistanceFitness(std::vector<Checkpoint> checkpoints, std::vector<std::vector<int>> constraintMatrix, TurtleState initialState, std::stack<char> lsystem, int width, int height)
+float FitnessFunction::CheckpointDistanceFitness(std::vector<Checkpoint> checkpoints,
+    std::vector<std::vector<int>> constraintMatrix,
+    TurtleState initialState,
+    std::stack<char> lsystem,
+    int width, int height)
 {
     Turtle turtle{ initialState, lsystem, width, height };
     std::vector<int> grid = turtle.returnGridVector();
@@ -125,46 +138,67 @@ float FitnessFunction::CheckpointDistanceFitness(std::vector<Checkpoint> checkpo
     float maxSum = 0.0f;
     float minSum = 0.0f;
 
+    if (enableLogging)
+        distanceLogs.clear(); 
+
     for (size_t i = 0; i < checkpoints.size(); ++i)
     {
         for (size_t j = i + 1; j < checkpoints.size(); ++j)
         {
-            int constraint = constraintMatrix[i][j];  // 0 = Ignore, 1 = Minimise, 2 = Maximise
-
-            if (constraint == 0) continue;  // Skip if no constraint is specified
+            int constraint = constraintMatrix[i][j];
+            if (constraint == 0) continue;
 
             Point start = { checkpoints[i].x, checkpoints[i].y };
             Point end = { checkpoints[j].x, checkpoints[j].y };
 
-            std::cout << "Checkpoint Pair: (" << checkpoints[i].x << ", " << checkpoints[i].y << ") and ("
-                << checkpoints[j].x << ", " << checkpoints[j].y << ")\n";
-
-            // Print the type of constraint
-            if (constraint == 1)
-                std::cout << "Constraint: Minimise the distance\n";
-            else if (constraint == 2)
-                std::cout << "Constraint: Maximise the distance\n";
-
             int distance = ComputeShortestPath(grid, width, height, start, end);
 
-            std::cout << "Distance: " << distance << "\n";
+            if (enableLogging)
+            {
+                DistanceLogEntry entry;
+                entry.checkpointA = start;
+                entry.checkpointB = end;
+                entry.constraintType = constraint;
+                entry.distance = distance;
+                distanceLogs.push_back(entry);
+            }
 
-            if (constraint == 1) // Minimise
+            if (constraint == 1)
                 minSum += distance;
-            else if (constraint == 2) // Maximise
+            else if (constraint == 2)
                 maxSum += distance;
         }
     }
 
-    std::cout << "---------------------\n";
-    std::cout << "Minimise Sum: " << minSum << "\n";
-    std::cout << "Maximise Sum: " << maxSum << "\n";
-    std::cout << "---------------------\n";
-
-
-
-    return ((maxSum + 1) / (minSum + 1)) * 100; // Return a ratio, adjusting to avoid division by zero
+    return ((maxSum + 1) / (minSum + 1)) * 100;
 }
+
+
+void FitnessFunction::ExportDistancesToCSV(const std::string& filename, int runIndex)
+{
+    std::ofstream file(filename, std::ios::app);
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open " << filename << " for writing.\n";
+        return;
+    }
+
+
+    file << "Run Index,Checkpoint A (x),Checkpoint A (y),Checkpoint B (x),Checkpoint B (y),Constraint,Distance\n";
+
+    for (const auto& entry : distanceLogs)
+    {
+        file << runIndex << ","
+            << entry.checkpointA.x << "," << entry.checkpointA.y << ","
+            << entry.checkpointB.x << "," << entry.checkpointB.y << ","
+            << (entry.constraintType == 1 ? "Minimise" : "Maximise") << ","
+            << entry.distance << "\n";
+    }
+
+    file.close();
+}
+
+
 
 
 
@@ -176,7 +210,7 @@ int FitnessFunction::ComputeShortestPath(std::vector<int>& grid, int width, int 
     q.push({ start, 0 });
     visited[start.y * width + start.x] = true;
 
-    // Define the 3x3 neighborhood of the checkpoint
+    
     std::vector<std::pair<int, int>> neighborOffsets = {
         {-1, -1}, {0, -1}, {1, -1},
         {-1,  0}, {0,  0}, {1,  0},
@@ -188,7 +222,6 @@ int FitnessFunction::ComputeShortestPath(std::vector<int>& grid, int width, int 
         auto [current, dist] = q.front();
         q.pop();
 
-        // Check if the current point is within the 3x3 neighborhood of the actual checkpoint
         for (const auto& offset : neighborOffsets)
         {
             int neighborX = end.x + offset.first;
@@ -207,7 +240,7 @@ int FitnessFunction::ComputeShortestPath(std::vector<int>& grid, int width, int 
             int newIndex = ny * width + nx;
 
             if (nx >= 0 && nx < width && ny >= 0 && ny < height &&
-                !visited[newIndex] && grid[newIndex] == 1)
+                !visited[newIndex] && grid[newIndex] == PATH)
             {
                 visited[newIndex] = true;
                 q.push({ {nx, ny}, dist + 1 });
@@ -234,7 +267,7 @@ int FitnessFunction::EvaluateCheckpointFitness(const std::vector<Checkpoint>& ch
         int closestIndex = -1;
         int minDistance = INT_MAX;
 
-        // Find the closest reachable checkpoint
+
         for (size_t i = 0; i < checkpoints.size(); ++i)
         {
             if (visitedCheckpoints.count(i)) continue;
@@ -247,22 +280,22 @@ int FitnessFunction::EvaluateCheckpointFitness(const std::vector<Checkpoint>& ch
             }
         }
 
-        // If no reachable checkpoint is found, break
+
         if (closestIndex == -1) break;
 
-        // If the closest checkpoint is reachable (distance != INT_MAX)
+
         if (minDistance != INT_MAX)
         {
             if (minDistance == 0)
             {
-                totalFitness += 500;  // Reward for immediate proximity
+                totalFitness += 500;  
             }
             else
             {
-                totalFitness += (1000 / (minDistance + 1));  // Distance-based reward
+                totalFitness += (1000 / (minDistance + 1));  
             }
 
-            // Mark the checkpoint as visited
+
             visitedCheckpoints.insert(closestIndex);
         }
     }
@@ -275,7 +308,7 @@ int FitnessFunction::ComputeClosestPathDistance(std::vector<int>& grid, int widt
     std::queue<std::pair<Point, int>> q;
     std::vector<bool> visited(width * height, false);
 
-    // Initialize the queue with all 'PATH' cells
+
     for (int y = 0; y < height; ++y)
     {
         for (int x = 0; x < width; ++x)
@@ -288,26 +321,26 @@ int FitnessFunction::ComputeClosestPathDistance(std::vector<int>& grid, int widt
         }
     }
 
-    // Perform BFS to find the shortest distance to the checkpoint
+
     while (!q.empty())
     {
         auto [current, dist] = q.front();
         q.pop();
 
-        // If we reach the checkpoint, return the distance
+
         if (current.x == checkpoint.x && current.y == checkpoint.y)
         {
             return dist;
         }
 
-        // Explore neighbors
+
         for (const auto& dir : directionVectorss)
         {
             int nx = current.x + dir.first;
             int ny = current.y + dir.second;
             int newIndex = ny * width + nx;
 
-            // Ensure the neighbor is within bounds and not visited yet
+
             if (nx >= 0 && nx < width && ny >= 0 && ny < height && !visited[newIndex])
             {
                 visited[newIndex] = true;
@@ -316,7 +349,7 @@ int FitnessFunction::ComputeClosestPathDistance(std::vector<int>& grid, int widt
         }
     }
 
-    // Return INT_MAX if the checkpoint is not reachable
+
     return INT_MAX;
 }
 

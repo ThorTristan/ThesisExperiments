@@ -43,7 +43,7 @@ public:
 
     void Run()
     {
-        int popSize = 100;
+        int popSize = 50;
         int iterations = 3;
         int generations = 50;
 
@@ -77,17 +77,17 @@ public:
 
                     float bestFitness = evolution.GetBestIndividual().Fitness;
 
-                    // Convert best individual stack to string
+
                     std::string bestIndividualWord = evolution.StackToString(evolution.GetBestIndividual().individual);
 
-                    // Serialize rules and starting rules
+
                     std::string bestIndividualRule = evolution.SerializeRules(evolution.GetBestIndividual().rule);
                     std::string bestIndividualStartingRule = evolution.SerializeRules(evolution.GetBestIndividual().StartingRule);
 
                     auto endTime = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = endTime - startTime;
 
-                    // Log all the results
+
                     LogResults(mutation, pattern, bestFitness, bestIndividualWord, bestIndividualRule, bestIndividualStartingRule, elapsed.count());
 
                     std::cout << "Completed run " << currentRun << " / " << totalRuns << "\n";
@@ -103,7 +103,7 @@ private:
 
     std::vector<std::vector<Individual>> bestEachGeneration;
 
-    // Updated LogResults function to log all required data
+
     void LogResults(MutationType mutation, CheckpointPattern pattern, float bestFitness,
         const std::string& bestIndividualWord, const std::string& bestIndividualRule,
         const std::string& bestIndividualStartingRule, double timeTaken)
@@ -114,7 +114,7 @@ private:
             return;
         }
 
-        // Write to log file, including the new data
+
         logFile << (mutation == WORD ? "WORD" : "RULE") << ",";
         logFile << (pattern == LINEAR ? "LINEAR" :
             pattern == CLUSTERED ? "CLUSTERED" :

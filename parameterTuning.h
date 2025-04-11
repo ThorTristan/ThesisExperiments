@@ -8,7 +8,12 @@
 #include "fitnessFunction.h"
 #include "evolutionRM.h"
 
-class Experiment2 
+
+
+// Average Fitness at each generation for every run
+// Best fitness for each generation and for every run
+// The individuals of those (so rule, word, starting rule)
+class Experiment3 
 {
 private:
     int iterations;
@@ -25,13 +30,15 @@ private:
 
     std::vector<std::vector<int>> mutationChances = 
     {
-        {60, 30, 10},
-        {40, 30, 30},
-        {50, 40, 10},
-        {100, 0, 0}
+        {60, 30, 10}, // Mainly Addition
+        {30, 40, 30}, // Higher Deletion
+        {40, 30, 30}, // Higher Addition
+        {30, 30, 40} // Higher Swapping
     };
 
     std::vector<int> expansionSizes = { 1, 3, 5, 7 };
+
+    
 
     std::vector<std::vector<int>> constraintMatrix = {
 {0, 1, 2, 1},
@@ -41,7 +48,7 @@ private:
     };
 
 public:
-    Experiment2(int iter) : iterations(iter) 
+    Experiment3(int iter) : iterations(iter) 
     {
         
         logFile.open("fitness_log.csv", std::ios::app);
@@ -58,7 +65,7 @@ public:
         logFile << "Symbol Set,Expansion Size,Mutation Chance,Mutation Type,Best Fitness,Time Taken (s)\n";
     }
 
-    ~Experiment2() 
+    ~Experiment3() 
     {
         
         if (logFile.is_open()) 

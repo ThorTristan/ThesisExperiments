@@ -2,6 +2,13 @@
 #include "common.h"
 #include "structs.h"
 
+struct DistanceLogEntry
+{
+	Point checkpointA;
+	Point checkpointB;
+	int constraintType; // 1 = Minimise, 2 = Maximise
+	int distance;
+};
 
 
 
@@ -24,7 +31,11 @@ public:
 	int ComputeClosestPathDistance(std::vector<int>& grid, int width, int height, const Checkpoint& checkpoint);
 
 	std::vector<Checkpoint> CreateCheckpoints(int width, int height, CheckpointPattern pattern, int numCheckpoints);
+
+	void setEnableLogging(bool b);
+	void ExportDistancesToCSV(const std::string& filename, int runIndex);
 private:
 
-
+	bool enableLogging = true;
+	std::vector<DistanceLogEntry> distanceLogs;
 };

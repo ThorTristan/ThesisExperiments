@@ -200,13 +200,13 @@ void Single::MutateRule(std::vector<char> symbolSet, std::vector<int> mutationPa
 
 
 
-
-void Single::MutateWord(std::vector<char> symbolSet, int expansionSize)
+// add deletion and swapping
+void Single::MutateWord(std::vector<char> symbolSet, int expansionSize, std::vector<int> mutationParams)
 {
 	std::stack<char> tempStack = m_Individual.individual;
-	std::vector<int> fIndices;
 	std::vector<char> symbols;
 
+	// Convert stack to vector
 	while (!tempStack.empty())
 	{
 		symbols.push_back(tempStack.top());
@@ -214,57 +214,77 @@ void Single::MutateWord(std::vector<char> symbolSet, int expansionSize)
 	}
 	std::reverse(symbols.begin(), symbols.end());
 
-	for (int i = 0; i < symbols.size(); ++i)
+	// Setup random generators
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_real_distribution<float> chanceDist(0.0f, 1.0f);
+	std::uniform_int_distribution<int> posDist(0, std::max(0, (int)symbols.size() - 1));
+	std::uniform_int_distribution<int> charDist(0, symbolSet.size() - 1);
+
+	// Mutation chance settings (percentages)
+	int addChance = mutationParams[0];
+	int deleteChance = mutationParams[1];
+	int swapChance = mutationParams[2];
+
+	float addRange = addChance / 100.0f;
+	float deleteRange = addRange + (deleteChance / 100.0f);
+	float swapRange = deleteRange + (swapChance / 100.0f);
+
+	float mutationChance = chanceDist(gen);
+
+	if (mutationChance < addRange)
 	{
-		if (symbols[i] == 'F')
+		// ADDITION
+		char randomChar = symbolSet[charDist(gen)];
+		int randomPos = posDist(gen);
+		symbols.insert(symbols.begin() + randomPos, randomChar);
+	}
+	else if (mutationChance < deleteRange && !symbols.empty())
+	{
+		// DELETION
+		int randomPos = posDist(gen);
+		symbols.erase(symbols.begin() + randomPos);
+	}
+	else if (mutationChance < swapRange && symbols.size() > 1)
+	{
+		// SWAPPING
+		int pos1 = posDist(gen);
+		int pos2 = posDist(gen);
+		while (pos2 == pos1) pos2 = posDist(gen); // ensure distinct
+
+		std::swap(symbols[pos1], symbols[pos2]);
+	}
+	else
+	{
+		// If no mutation applied, apply fallback expansion logic
+		std::vector<int> fIndices;
+		for (int i = 0; i < symbols.size(); ++i)
+			if (symbols[i] == 'F')
+				fIndices.push_back(i);
+
+		if (!fIndices.empty())
 		{
-			fIndices.push_back(i);
+			std::uniform_int_distribution<> dist(0, fIndices.size() - 1);
+			int randomIndex = fIndices[dist(gen)];
+
+			std::vector<char> randomExpansion;
+			for (int i = 0; i < expansionSize; ++i)
+			{
+				std::uniform_int_distribution<> symbolDist(0, symbolSet.size() - 1);
+				randomExpansion.push_back(symbolSet[symbolDist(gen)]);
+			}
+
+			symbols.insert(symbols.begin() + randomIndex + 1, randomExpansion.begin(), randomExpansion.end());
 		}
 	}
 
-	if (fIndices.empty())
-	{
-		std::cout << "No 'F' symbols found to expand.\n";
-		return;
-	}
-
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dist(0, fIndices.size() - 1);
-	int randomIndex = fIndices[dist(gen)];
-
-	std::vector<char> possibleSymbols = symbolSet;
-
-	std::vector<char> randomExpansion;
-	for (int i = 0; i < expansionSize; ++i)
-	{
-		std::uniform_int_distribution<> symbolDist(0, possibleSymbols.size() - 1);
-		randomExpansion.push_back(possibleSymbols[symbolDist(gen)]);
-	}
-
-	symbols[randomIndex] = 'F';
-	symbols.insert(symbols.begin() + randomIndex + 1, randomExpansion.begin(), randomExpansion.end());
-
+	// Push modified vector back into the stack
 	while (!m_Individual.individual.empty())
-	{
 		m_Individual.individual.pop();
-	}
 
 	for (auto it = symbols.rbegin(); it != symbols.rend(); ++it)
-	{
 		m_Individual.individual.push(*it);
-	}
-
-	std::stack<char> reversedStack;
-	while (!m_Individual.individual.empty())
-	{
-		reversedStack.push(m_Individual.individual.top());
-		m_Individual.individual.pop();
-	}
-
-	m_Individual.individual = reversedStack;
 }
-
 
 
 

@@ -16,31 +16,31 @@
 // I need to fiddle with the constraint matrices.
 
 std::vector<std::vector<std::vector<int>>> constraintMatrices = {
-    { // First constraint matrix
+    { 
         {0, 1, 2, 1},
         {1, 0, 1, 2},
         {2, 0, 0, 1},
         {1, 2, 1, 0}
     }
-    //,
-    //{ // Second constraint matrix
-    //    {0, 1, 0, 1},
-    //    {1, 0, 1, 0},
-    //    {0, 1, 0, 1},
-    //    {1, 0, 1, 0}
-    //},
-    //{ // Third constraint matrix
-    //    {0, 2, 1, 2},
-    //    {2, 0, 1, 1},
-    //    {1, 1, 0, 2},
-    //    {2, 1, 2, 0}
-    //},
-    //{ // Fourth constraint matrix
-    //    {0, 0, 1, 1},
-    //    {0, 0, 1, 0},
-    //    {1, 1, 0, 0},
-    //    {1, 0, 0, 0}
-    //}
+    ,
+    { 
+        {0, 1, 0, 1},
+        {1, 0, 1, 0},
+        {0, 1, 0, 1},
+        {1, 0, 1, 0}
+    },
+    { 
+        {0, 2, 1, 2},
+        {2, 0, 1, 1},
+        {1, 1, 0, 2},
+        {2, 1, 2, 0}
+    },
+    { 
+        {0, 0, 1, 1},
+        {0, 0, 1, 0},
+        {1, 1, 0, 0},
+        {1, 0, 0, 0}
+    }
 };
 
 std::vector<std::vector<int>> constraintMatrix =
@@ -79,12 +79,14 @@ public:
     }
 
     void Run() {
-        int popSize = 25;
+        int popSize = 100;
         int iterations = 3;
         int generations = 100;
 
         TurtleState initialState{ 25, 49, N };
 
+        int totalRuns = 2 * constraintMatrices.size() * runsPerCombination;
+        int currentRun = 1;
         for (MutationType mutation : {WORD})
         {
             for (size_t matrixIndex = 0; matrixIndex < constraintMatrices.size(); ++matrixIndex)
@@ -102,15 +104,17 @@ public:
                     float bestFitness = evolution.GetBestIndividual().Fitness;
                     Individual ind = evolution.GetBestIndividual();
                     
-                    if (bestFitness > 2000)
-                    {
-                        evolution.PrintIndividual(ind.individual);
-                    }
+                    //if (bestFitness > 2000)
+                    //{
+                    //    evolution.PrintIndividual(ind.individual);
+                    //}
 
                     auto endTime = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = endTime - startTime;
 
                     LogResults(mutation, matrixIndex, bestFitness, elapsed.count());
+                    std::cout << "Completed run " << currentRun << " / " << totalRuns << "\n";
+                    ++currentRun;
                 }
             }
         }

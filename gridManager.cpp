@@ -54,8 +54,8 @@ void GridManager::RenderGrid(std::vector<int> grid, std::vector<Checkpoint> chec
 
             SDL_RenderFillRect(RM.renderer, &cellRect);
 
-            //SDL_SetRenderDrawColor(RM.renderer, 0, 0, 0, 255);
-            //SDL_RenderDrawRect(RM.renderer, &cellRect);
+            SDL_SetRenderDrawColor(RM.renderer, 0, 0, 0, 255);
+            SDL_RenderDrawRect(RM.renderer, &cellRect);
         }
     }
 

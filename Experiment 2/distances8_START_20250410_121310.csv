@@ -1,0 +1,7 @@
+Run Index,Checkpoint A (x),Checkpoint A (y),Checkpoint B (x),Checkpoint B (y),Constraint,Distance
+8,41,25,25,41,Maximise,24
+8,41,25,8,24,Minimise,32
+8,41,25,25,8,Maximise,27
+8,25,41,8,24,Minimise,28
+8,25,41,25,8,Minimise,32
+8,8,24,25,8,Maximise,30

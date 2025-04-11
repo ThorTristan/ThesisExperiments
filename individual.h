@@ -39,7 +39,7 @@ public:
 
 	void MutateRule(std::vector<char> symbolSet, std::vector<int> mutationParams);
 
-	void MutateWord(std::vector<char> symbolSet, int expansionSize);
+	void MutateWord(std::vector<char> symbolSet, int expansionSize, std::vector<int> mutationParams);
 
 	void Evaluate(FitnessType chosenFitness, std::vector<std::vector<int>> constraintMatrix);
 

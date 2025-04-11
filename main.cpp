@@ -2,6 +2,7 @@
 #include "mainHeaderFiles.h"
 
 
+
 bool quit = false;
 RenderManager RM;
 FitnessFunction FF;
@@ -20,10 +21,10 @@ int main(int argc, char* argv[])
 	
 	InputManager InputManager;
 	LsystemGenerator LG;
-	//Experiment1 experiment(30); ..DONE
-	Experiment2 experiment3(1);
+	Experiment1 experiment(30); //..DONE
+	Experiment3 experiment3(1);
 	
-	ExperimentConstraints experiment2(30, constraintMatrices);
+	ExperimentConstraints experiment2(30, constraintMatrices); //..DONE
 
 	TurtleState initialState{25,49,N};
 	
@@ -41,7 +42,7 @@ int main(int argc, char* argv[])
 	//std::vector<int> grid = testing.CreateTestGrid(50, 50);
 	//testing.PrintGrid(grid,50,50);
 
-	std::string lsystem = R"([]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-F[F]-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-F[[]]FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-[]FFF[+-]+F-F[[F-]F+]--F-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][]-[][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-++[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FF]]+[]FF-FF-++FFF][--][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-F[-]F-F-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][F+[+[FFFF-FF-++FF][F]-+F+FFF-FF-++FF][FFFF-FF-++FF][][+[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FF-+F[FFF-FF-++FF][-FFFF-F++[][F-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-F[F]-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FF+-]F[FF-FF-++FF][FFFF-FF+--+[-++FF][FFFF-FF-++FF][[]FFFF-FF-++FFF]+[+][FFFF-FF-++FF][++-FF+-F-FFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF]-]F][F]F[-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFF++FF-F-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-[]FFFF-FF-++FF][F[]FF-FFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++F[][]+F][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF[FF]F][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF[-[]]-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-++[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][F][-F+FFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFF++[]]F-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF]-FFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++F-[]+]F-FF+]][FFFF-FF-++FF][FFFF-FF-++FF][][-[]FFF-+-FFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FFF-+---++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-F-+F-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-F+++-FF-++FF][-FF+][[]FF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFF-FFFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++F-]++[F][++-FFFF-FF-++FF][FFFF-FF-++F+]-[+F][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-++[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFF-FF+FF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FF+-]]-FF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][][)"; // your full string here
+	std::string lsystem = R"([]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-F[F]-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-F[[]]FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-[]FFF[+-]+F-F[[F-]F+]--F-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][]-[][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-++[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FF]]+[]FF-FF-++FFF][--][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-F[-]F-F-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][F+[+[FFFF-FF-++FF][F]-+F+FFF-FF-++FF][FFFF-FF-++FF][][+[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FF-+F[FFF-FF-++FF][-FFFF-F++[][F-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-F[F]-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FF+-]F[FF-FF-++FF][FFFF-FF+--+[-++FF][FFFF-FF-++FF][[]FFFF-FF-++FFF]+[+][FFFF-FF-++FF][++-FF+-F-FFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF]-]F][F]F[-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFF++FF-F-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-[]FFFF-FF-++FF][F[]FF-FFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++F[][]+F][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF[FF]F][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF[-[]]-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-++[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][F][-F+FFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFF++[]]F-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF]-FFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++F-[]+]F-FF+]][FFFF-FF-++FF][FFFF-FF-++FF][][-[]FFF-+-FFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FFF-+---++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-F-+F-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-F+++-FF-++FF][-FF+][[]FF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FFFF-FF-++FF][-FFF-FFFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++F-]++[F][++-FFFF-FF-++FF][FFFF-FF-++F+]-[+F][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][-++[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFF-FF+FF-FF-++FF][FFFF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][[]FFFF-FF-++FF][FFFF-FF-++FF][++-FFFF-FF-++FF][FF+-]]-FF-FF-++FF][-FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][FFFF-FF-++FF][][)"; 
 	std::stack<char> charStack = testing.ConvertToStack(lsystem);
 
 	std::vector<int> grid = testing.CreateTestGrid(50, 50, charStack);
@@ -57,7 +58,7 @@ int main(int argc, char* argv[])
 
 	experiment2.Run();
 
-	//testing.TestCSP();
+	//testing.TestCSP(charStack);
 	RM.presentScene();
 
 	while (!quit)
@@ -70,6 +71,8 @@ int main(int argc, char* argv[])
 		//GM.RenderGrid(turtleTest.returnGridVector(), 150, 150, 250, 250, 70, 70);
 
 		//RM.presentScene();
+
+		SDL_ShowCursor(1);
 		
 		
 		InputManager.Listen();
