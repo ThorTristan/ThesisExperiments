@@ -1,0 +1,51 @@
+{
+  "bb7fc8a54a93fd3": {
+    "expansion_size": 3,
+    "genetic_code": "FFFFFFF+-F+FFFFF-FFF-+FFFFF-+",
+    "mutation_chances": [
+      34,
+      33,
+      33
+    ],
+    "mutation_choice": "WORD",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "++F-F-FF]-+F[F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "++F-F-FF]-+F[F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F",
+      "+",
+      "-"
+    ]
+  }
+}

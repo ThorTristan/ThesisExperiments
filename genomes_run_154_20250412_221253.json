@@ -1,0 +1,53 @@
+{
+  "fa46820e6931d82": {
+    "expansion_size": 3,
+    "genetic_code": "--[+]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]+]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]++]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]+]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]+]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]+]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]+-[]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]+]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]+]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF][-+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]+FF+FFFF-[FFF]++FF+FFFF-[FFF]+FF+FFFF-[FFF]+]-",
+    "mutation_chances": [
+      20,
+      20,
+      60
+    ],
+    "mutation_choice": "RULE",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "+FF+FFFF-[FFF]"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FFF+FFFF-[F+F]"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F",
+      "+",
+      "-",
+      "[",
+      "]"
+    ]
+  }
+}

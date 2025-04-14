@@ -1,0 +1,53 @@
+{
+  "71409cb01902711c": {
+    "expansion_size": 1,
+    "genetic_code": "][]]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFF+-[]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF+F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF][-+F-FF]F+-[]FF+FFF]F-FF]F+-[]FF+FFFF-FF]F+-[]FF+FFF-F-FF]F+-[]FF+FFF",
+    "mutation_chances": [
+      50,
+      25,
+      25
+    ],
+    "mutation_choice": "RULE",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "F-FF]F+-[]FF+FFF"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "F-[FF+-FF]+FFF"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F",
+      "+",
+      "-",
+      "[",
+      "]"
+    ]
+  }
+}

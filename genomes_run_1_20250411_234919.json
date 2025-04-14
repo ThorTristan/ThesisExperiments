@@ -1,0 +1,49 @@
+{
+  "49d8a743afbb1eb9": {
+    "expansion_size": 1,
+    "genetic_code": "+-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-]-+-[+-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-]-+-[+-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-]-+-[+-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-]-+-[+-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F--+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-]-+-[+-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-++-FF+F-]-+-[FF-+FF+F-]-+-[FF-+[-+-]-FFF+F-]-+-[FF-++FF+F-]-+-[FF-+FF+F-]-+-[FF-+-+",
+    "mutation_chances": [
+      25,
+      50,
+      25
+    ],
+    "mutation_choice": "WORD",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FF+F-]-+-[FF-+"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FF+F-]-+-[FF-+"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F"
+    ]
+  }
+}

@@ -5,15 +5,7 @@
 
 
 
-		For containt matrix and checkpoint analysis:
-			neeed to store the individuals somewhere so i can look at them.
-
-
-
-		Need a way to view the mazes
-
-
-		And need to fix the ff2 
+	// Write a function where i can put in the data for an individual and view it
 
 
 

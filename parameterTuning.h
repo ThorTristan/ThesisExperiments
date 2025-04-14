@@ -35,11 +35,11 @@ private:
 
     std::vector<std::vector<int>> mutationChances = 
     {
-        {70, 15, 15}, // Mainly Addition
+        {60, 20, 20}, // Mainly Addition
         {25, 50, 25}, // Higher Deletion
         {50, 25, 25}, // Higher Addition
         {25, 25, 50}, // Higher Swapping
-        {15, 15, 70}, // mainly Swapping
+        {20, 20, 60}, // mainly Swapping
         {34, 33, 33} // balanced
     };
 
@@ -47,12 +47,16 @@ private:
 
     
 
-    std::vector<std::vector<int>> constraintMatrix = {
-{0, 1, 2, 1},
-{1, 0, 1, 2},
-{2, 0, 0, 1},
-{1, 2, 1, 0}
+    std::vector<std::vector<int>> constraintMatrix =
+    {
+        {0, 0, 1, 1},
+        {0, 0, 1, 0},
+        {1, 1, 0, 0},
+        {1, 0, 0, 0}
     };
+
+
+    // 
 
 public:
     Experiment3(int iter) : iterations(iter) 
@@ -89,23 +93,25 @@ public:
     }
 
     void Run() {
-        std::vector<MutationType> mutationTypes = { RULE, WORD }; 
+        std::vector<MutationType> mutationTypes = { WORD, RULE };
 
-        for (MutationType mutationType : mutationTypes) 
-        {  
-            for (const auto& symbolSet : symbolSets) 
-            {
-                for (int expansionSize : expansionSizes) 
-                {
-                    for (const auto& mutationChance : mutationChances) 
-                    {
-                        RunTest(symbolSet, expansionSize, mutationChance, mutationType);
-                        runIndex++;
+        for (int iteration = 0; iteration < iterations; ++iteration) 
+        { 
+            std::cout << "Starting repetition " << iteration + 1 << " of " << iterations << std::endl;
+
+            for (MutationType mutationType : mutationTypes) {
+                for (const auto& symbolSet : symbolSets) {
+                    for (int expansionSize : expansionSizes) {
+                        for (const auto& mutationChance : mutationChances) {
+                            RunTest(symbolSet, expansionSize, mutationChance, mutationType);
+                            runIndex++;
+                        }
                     }
                 }
             }
         }
     }
+
 
     void RunTest(const std::vector<char>& symbolSet, int expansionSize, const std::vector<int>& mutationChance, MutationType mutationType) 
     {
@@ -117,7 +123,7 @@ public:
         int generations = 100;
         int ruleIterations = 3;
 
-        Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, LINEAR, constraintMatrix);
+        Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, CIRCULAR, constraintMatrix);
         evolution.SetMutationParams(symbolSet, mutationChance, expansionSize);
 
         evolution.Run(runIndex);
@@ -126,7 +132,7 @@ public:
         auto endTime = std::chrono::high_resolution_clock::now(); 
         std::chrono::duration<double> elapsed = endTime - startTime; 
 
-        LogResults(symbolSet, expansionSize, mutationChance, mutationType, fitnessScore, elapsed.count());
+        LogResults(symbolSet, expansionSize, mutationChance, mutationType, fitnessScore, elapsed.count(), startingWord);
 
         std::cout << "  Running experiment " << currentRun + 1 << " of " << totalRuns
             << " (" << totalRuns - currentRun - 1 << " left)" << std::endl;
@@ -148,7 +154,7 @@ public:
     }
 
     void LogResults(const std::vector<char>& symbolSet, int expansionSize, const std::vector<int>& mutationChance,
-        MutationType mutationType, float fitness, double timeTaken) 
+        MutationType mutationType, float fitness, double timeTaken, std::string startingWord)
     {
 
    
@@ -166,6 +172,7 @@ public:
         logFile << (mutationType == RULE ? "RULE" : "WORD") << ",";  
         logFile << fitness << ",";  
         logFile << timeTaken << "\n"; 
+        logFile << startingWord << "\n"; 
 
         logFile.flush(); 
     }
