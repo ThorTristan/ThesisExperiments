@@ -354,7 +354,7 @@ void Evolution::Run(int runIndex)
         for (int i = 0; i < m_NumberOfGenerations; i++)
         {
             SortPopulation();  
-            RenderIndividual(m_BestIndividual);  
+            //RenderIndividual(m_BestIndividual);  
 
             Selection(); 
             Mutation();  

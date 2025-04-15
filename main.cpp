@@ -1,6 +1,7 @@
 #pragma once
 #include "mainHeaderFiles.h"
 #include "json.hpp"
+#include "Experiment3.h"
 
 
 
@@ -15,17 +16,13 @@ int main(int argc, char* argv[])
 {
 
 
-
-
-
-
 	
 	InputManager InputManager;
 	LsystemGenerator LG;
 	//Experiment1 experiment(30); //..DONE
 	Experiment3 experiment3(30);
 	
-	//ExperimentConstraints experiment2(30, constraintMatrices); //..DONE
+	ExperimentConstraints experiment2(30, constraintMatrices); //..DONE
 
 	TurtleState initialState{25,49,N};
 	
