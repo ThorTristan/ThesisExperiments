@@ -21,30 +21,29 @@ private:
 
     std::vector<std::vector<char>> symbolSets =
     {
+        {'F', '+', '-', '[', ']'},
         {'F'},
         {'F', '+', '-'},
-        {'F', '+', '-', '[', ']'},
         {'F', '[', ']'}
     };
 
     std::vector<std::vector<int>> mutationChances =
     {
-        {60, 20, 20},
-        {25, 50, 25},
         {50, 25, 25},
         {25, 25, 50},
-        {20, 20, 60},
+        {25, 50, 25},
         {34, 33, 33}
     };
 
-    std::vector<int> expansionSizes = { 1, 3, 5, 7 };
+    std::vector<int> expansionSizes = { 7, 5, 3 };
 
     std::vector<std::vector<int>> constraintMatrix =
     {
-        {0, 0, 1, 1},
-        {0, 0, 1, 0},
-        {1, 1, 0, 0},
-        {1, 0, 0, 0}
+//       0  1  2  3             Maximise 3,2 & 3,0
+        {0, 1, 0, 2}, //0       Minimise {2,1} & {1,3} & {1,0}
+        {1, 0, 1, 1}, //1       Heart Shaped
+        {0, 1, 0, 2}, //2
+        {2, 3, 2, 0}  //3
     };
 
 public:
@@ -79,7 +78,7 @@ public:
     }
 
     void Run() {
-        std::vector<MutationType> mutationTypes = { WORD, RULE };
+        std::vector<MutationType> mutationTypes = { WORD,RULE };
         auto experimentStartTime = std::chrono::high_resolution_clock::now();
 
         for (int iteration = 0; iteration < iterations; ++iteration)
@@ -104,10 +103,11 @@ public:
     {
         auto startTime = std::chrono::high_resolution_clock::now();
 
-        std::string startingWord = GenerateRandomSequence(symbolSet, 5);
+        //std::string startingWord = GenerateRandomSequence(symbolSet, 5);
+        std::string startingWord = "F-F+F";
         TurtleState initialState{ 25, 49, N };
         int popSize = 50;
-        int generations = 50;
+        int generations = 80;
         int ruleIterations = 3;
 
         Evolution evolution(popSize, startingWord, ruleIterations, initialState, generations, CHECKPOINT_DISTANCE, mutationType, CIRCULAR, constraintMatrix);

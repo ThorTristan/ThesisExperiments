@@ -1,0 +1,51 @@
+{
+  "e86f1b73df3a32c3": {
+    "expansion_size": 5,
+    "genetic_code": "F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF+-F+-FF]+-+F-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FFF+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF]+-+-F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF[F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FFF+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF-F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F++-FF]+-+-F[FF+-F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FFF+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF]+-+-F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF[F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+--+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FFF+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF+F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF+-F+-FF]+-+-F[FF+-FF]+-+-F[FF[F+-FF+]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FFF+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF]+-+-F+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF[F+-FF]+-+-F[FFF+-FF]+-+-+F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FFF+-FF]+-+-F[FFF+-FF]+-+-F[FF[F+-FF]+-+-F[FF-+-+]F+-FF]+-+-F[FFF+-FF]+-+-F[FF-+F+-FF]+-+-F[FF",
+    "mutation_chances": [
+      50,
+      25,
+      25
+    ],
+    "mutation_choice": "WORD",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FF[F-+-+]FF-+F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FF[F-+-+]FF-+F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F",
+      "+",
+      "-"
+    ]
+  }
+}

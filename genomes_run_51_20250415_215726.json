@@ -1,0 +1,53 @@
+{
+  "bafb2da7346a961e": {
+    "expansion_size": 7,
+    "genetic_code": "-[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--+-+-[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-+]-[-+-[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--+-+-[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-+]-[---[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[--+-+-[-]+FFFF-+-+F+]-[-+-+-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-FFFF-+-+F+]-[-+]-[-",
+    "mutation_chances": [
+      34,
+      33,
+      33
+    ],
+    "mutation_choice": "RULE",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FFFF-+-+F+]-[-"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "-F+FF--++]F-[F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F",
+      "+",
+      "-",
+      "[",
+      "]"
+    ]
+  }
+}

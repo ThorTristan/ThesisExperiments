@@ -1,0 +1,53 @@
+{
+  "ec471cb7fb85900": {
+    "expansion_size": 7,
+    "genetic_code": "F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF-+F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF]+[F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF+F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF+F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF-+F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF]+[F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF+F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF-+F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF]+[F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF+F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFFF-+F-F]+[F+FFF+F-+F-F]+[F+FFF[+]F-+F-F]+[F+FFF-F-+F-F]+[F+FFF+-F-+F-F]+[F+FFF",
+    "mutation_chances": [
+      50,
+      25,
+      25
+    ],
+    "mutation_choice": "RULE",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "F-+F-F]+[F+FFF"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "+-FF-]+F[FFF+F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F",
+      "+",
+      "-",
+      "[",
+      "]"
+    ]
+  }
+}

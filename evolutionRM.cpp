@@ -354,7 +354,7 @@ void Evolution::Run(int runIndex)
         for (int i = 0; i < m_NumberOfGenerations; i++)
         {
             SortPopulation();  
-            //RenderIndividual(m_BestIndividual);  
+            RenderIndividual(m_BestIndividual);  
 
             Selection(); 
             Mutation();  
@@ -433,7 +433,7 @@ void Evolution::Run(int runIndex)
             //logFile << runIndex << "," << i + 1 << "," << m_BestIndividual.Fitness << "\n";
 
             std::cout << "Generation: " << i + 1 << "/" << m_NumberOfGenerations
-                << " | Avg Fitness: " << m_AverageFitness << std::endl;
+                << " | Avg Fitness: " << m_AverageFitness << "| Best Fitness: " << m_BestIndividual.Fitness << std::endl;
 
             m_CurrentGeneration = i+1;
             

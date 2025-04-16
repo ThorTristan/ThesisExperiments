@@ -4,142 +4,95 @@
 #include "Testing.h"
 #include <sstream>
 #include <fstream>
+#include <random>
+#include <cmath>
+#include <limits>
+#include <unordered_set>
 
 extern Testing testing;
 
-std::pair<int, int> directionVectorss[] =
+constexpr std::pair<int, int> directionVectors[] =
 {
-    {0, -1},  // Up
-    {1, 0},   // Right
-    {0, 1},   // Down
-    {-1, 0},  // Left
-    {1, -1},  // Up-Right
-    {1, 1},   // Down-Right
-    {-1, 1},  // Down-Left
-    {-1, -1}  // Up-Left
+    {0, -1}, {1, 0}, {0, 1}, {-1, 0},  // Cardinal
+    {1, -1}, {1, 1}, {-1, 1}, {-1, -1} // Diagonal
 };
 
 int FitnessFunction::AreaFunction(std::stack<char> lsystem, TurtleState initialState, int gridWidth)
 {
+    Turtle turtle{ initialState, lsystem, gridWidth, gridWidth };
+    const auto& gene = turtle.returnGridVector();
 
-    Turtle turtle{ initialState,lsystem,gridWidth,gridWidth };
-    std::vector<int> gene = turtle.returnGridVector();
-
-    int pathCounter = 0;
-
-    for (int num : gene)
-    {
-        if (num != EMPTY)
-        {
-            pathCounter++;
-        }
-
-    }
-
-
-    return pathCounter;
-
-
+    return std::count_if(gene.begin(), gene.end(), [](int cell) {
+        return cell != EMPTY;
+        });
 }
 
-
-
-
-std::vector<Checkpoint> FitnessFunction::CreateCheckpoints(int width, int height, CheckpointPattern pattern, int numCheckpoints) 
+std::vector<Checkpoint> FitnessFunction::CreateCheckpoints(int width, int height, CheckpointPattern pattern, int numCheckpoints)
 {
-    unsigned int seed = 0;
+    static std::mt19937 gen(0);
     std::vector<Checkpoint> checkpoints;
-    int midRow = height / 2;
-    int midCol = width / 2;
-    std::mt19937 gen(seed);  
+    int midRow = height / 2, midCol = width / 2;
 
-    if (pattern == RANDOM) 
+    switch (pattern)
     {
-        std::uniform_int_distribution<int> distX(0, width);
-        std::uniform_int_distribution<int> distY(0, height);
-
-        for (int i = 0; i < numCheckpoints; ++i) 
-        {
-            checkpoints.push_back(Checkpoint{ distX(gen), distY(gen) });
-        }
+    case RANDOM: {
+        std::uniform_int_distribution<int> distX(0, width - 1), distY(0, height - 1);
+        for (int i = 0; i < numCheckpoints; ++i)
+            checkpoints.emplace_back(distX(gen), distY(gen));
+        break;
     }
-    else if (pattern == SQUARE) 
-    {
+    case SQUARE: {
         int step = std::sqrt(numCheckpoints);
-        for (int i = 0; i < step; ++i) 
-        {
-            for (int j = 0; j < step; ++j) 
-            {
-                checkpoints.push_back(Checkpoint{ i * (width / step), j * (height / step) });
-            }
-        }
+        for (int i = 0; i < step; ++i)
+            for (int j = 0; j < step; ++j)
+                checkpoints.emplace_back(i * width / step, j * height / step);
+        break;
     }
-    else if (pattern == CLUSTERED) 
-    {
+    case CLUSTERED: {
         int clusterX = midCol + (rand() % (width / 4)) - (width / 8);
         int clusterY = midRow + (rand() % (height / 4)) - (height / 8);
-
         std::uniform_int_distribution<int> offset(-10, 10);
-        for (int i = 0; i < numCheckpoints; ++i) 
-        {
-            checkpoints.push_back(Checkpoint{ clusterX + offset(gen), clusterY + offset(gen) });
-        }
+        for (int i = 0; i < numCheckpoints; ++i)
+            checkpoints.emplace_back(clusterX + offset(gen), clusterY + offset(gen));
+        break;
     }
-    else if (pattern == CIRCULAR)
-    {
+    case CIRCULAR: {
         float radius = std::min(width, height) / 3.0f;
         float angleStep = 2 * M_PI / numCheckpoints;
-
-        for (int i = 0; i < numCheckpoints; ++i)
-        {
+        for (int i = 0; i < numCheckpoints; ++i) {
             float angle = i * angleStep;
-            int x = static_cast<int>(midCol + radius * cos(angle));
-            int y = static_cast<int>(midRow + radius * sin(angle));
-
-
-            //std::cout << "Checkpoint " << i << ": (" << x << ", " << y << ")\n";
-
-            checkpoints.push_back(Checkpoint{ x, y });
+            checkpoints.emplace_back(
+                static_cast<int>(midCol + radius * cos(angle)),
+                static_cast<int>(midRow + radius * sin(angle))
+            );
         }
+        break;
     }
-    else if (pattern == LINEAR) 
-    {
-
-        int stepX = width / (numCheckpoints + 1); 
-
-        for (int i = 0; i < numCheckpoints; ++i) 
-        {
-            checkpoints.push_back(Checkpoint{ (i + 1) * stepX, midRow });
-        }
+    case LINEAR: {
+        int stepX = width / (numCheckpoints + 1);
+        for (int i = 0; i < numCheckpoints; ++i)
+            checkpoints.emplace_back((i + 1) * stepX, midRow);
+        break;
+    }
     }
 
     return checkpoints;
 }
 
+void FitnessFunction::setEnableLogging(bool b) { enableLogging = b; }
 
-
-void FitnessFunction::setEnableLogging(bool b)
-{
-    enableLogging = b;
-}
-
-
-
-// min max
-float FitnessFunction::CheckpointDistanceFitness(std::vector<Checkpoint> checkpoints,
-    std::vector<std::vector<int>> constraintMatrix,
+float FitnessFunction::CheckpointDistanceFitness(
+    std::vector<Checkpoint>& checkpoints,
+    std::vector<std::vector<int>>& constraintMatrix,
     TurtleState initialState,
     std::stack<char> lsystem,
     int width, int height)
 {
     Turtle turtle{ initialState, lsystem, width, height };
-    std::vector<int> grid = turtle.returnGridVector();
+    auto grid = turtle.returnGridVector();
 
-    float maxSum = 0.0f;
-    float minSum = 0.0f;
-
-    if (enableLogging)
-        distanceLogs.clear(); 
+    float maxSum = 0.0f, minSum = 0.0f;
+    if (enableLogging) distanceLogs.clear();
 
     for (size_t i = 0; i < checkpoints.size(); ++i)
     {
@@ -150,57 +103,37 @@ float FitnessFunction::CheckpointDistanceFitness(std::vector<Checkpoint> checkpo
 
             Point start = { checkpoints[i].x, checkpoints[i].y };
             Point end = { checkpoints[j].x, checkpoints[j].y };
-
             int distance = ComputeShortestPath(grid, width, height, start, end);
 
-            if (enableLogging)
-            {
-                DistanceLogEntry entry;
-                entry.checkpointA = start;
-                entry.checkpointB = end;
-                entry.constraintType = constraint;
-                entry.distance = distance;
-                distanceLogs.push_back(entry);
+            if (enableLogging) {
+                distanceLogs.push_back({ start, end, constraint, distance });
             }
 
-            if (constraint == 1)
-                minSum += distance;
-            else if (constraint == 2)
-                maxSum += distance;
+            if (constraint == 1) minSum += distance;
+            else if (constraint == 2) maxSum += distance;
         }
     }
 
     return ((maxSum + 1) / (minSum + 1)) * 100;
 }
 
-
 void FitnessFunction::ExportDistancesToCSV(const std::string& filename, int runIndex)
 {
     std::ofstream file(filename, std::ios::app);
-    if (!file.is_open())
-    {
+    if (!file.is_open()) {
         std::cerr << "Failed to open " << filename << " for writing.\n";
         return;
     }
 
-
     file << "Run Index,Checkpoint A (x),Checkpoint A (y),Checkpoint B (x),Checkpoint B (y),Constraint,Distance\n";
-
-    for (const auto& entry : distanceLogs)
-    {
+    for (const auto& entry : distanceLogs) {
         file << runIndex << ","
             << entry.checkpointA.x << "," << entry.checkpointA.y << ","
             << entry.checkpointB.x << "," << entry.checkpointB.y << ","
             << (entry.constraintType == 1 ? "Minimise" : "Maximise") << ","
             << entry.distance << "\n";
     }
-
-    file.close();
 }
-
-
-
-
 
 int FitnessFunction::ComputeShortestPath(std::vector<int>& grid, int width, int height, Point start, Point end)
 {
@@ -210,146 +143,94 @@ int FitnessFunction::ComputeShortestPath(std::vector<int>& grid, int width, int 
     q.push({ start, 0 });
     visited[start.y * width + start.x] = true;
 
-    
-    std::vector<std::pair<int, int>> neighborOffsets = {
-        {-1, -1}, {0, -1}, {1, -1},
-        {-1,  0}, {0,  0}, {1,  0},
-        {-1,  1}, {0,  1}, {1,  1}
-    };
-
-    while (!q.empty())
-    {
+    while (!q.empty()) {
         auto [current, dist] = q.front();
         q.pop();
 
-        for (const auto& offset : neighborOffsets)
-        {
-            int neighborX = end.x + offset.first;
-            int neighborY = end.y + offset.second;
-
-            if (current.x == neighborX && current.y == neighborY)
-            {
-                return dist;
-            }
+        // Instead of direct comparison to 'end', check if we're next to it
+        for (const auto& [dx, dy] : directionVectors) {
+            if (current.x + dx == end.x && current.y + dy == end.y)
+                return dist + 1;
         }
 
-        for (const auto& dir : directionVectorss)
-        {
-            int nx = current.x + dir.first;
-            int ny = current.y + dir.second;
-            int newIndex = ny * width + nx;
+        for (const auto& [dx, dy] : directionVectors) {
+            int nx = current.x + dx;
+            int ny = current.y + dy;
+            int index = ny * width + nx;
 
             if (nx >= 0 && nx < width && ny >= 0 && ny < height &&
-                !visited[newIndex] && grid[newIndex] == PATH)
-            {
-                visited[newIndex] = true;
+                !visited[index] && grid[index] == PATH) {
+                visited[index] = true;
                 q.push({ {nx, ny}, dist + 1 });
             }
         }
     }
 
-    return -1;
+    return -1; // No path to any neighbor of the endpoint
 }
 
 
-//2000 one
-
-int FitnessFunction::EvaluateCheckpointFitness(const std::vector<Checkpoint>& checkpoints, TurtleState initialState, std::stack<char> lsystem, int width, int height)
+int FitnessFunction::EvaluateCheckpointFitness(
+    std::vector<Checkpoint>& checkpoints,
+    TurtleState initialState,
+    std::stack<char> lsystem,
+    int width, int height)
 {
     Turtle turtle{ initialState, lsystem, width, height };
-    std::vector<int> grid = turtle.returnGridVector();
+    auto grid = turtle.returnGridVector();
 
     int totalFitness = 0;
-    std::unordered_set<int> visitedCheckpoints;
+    std::unordered_set<int> visited;
 
-    while (visitedCheckpoints.size() < checkpoints.size())
-    {
+    while (visited.size() < checkpoints.size()) {
         int closestIndex = -1;
         int minDistance = INT_MAX;
 
-
-        for (size_t i = 0; i < checkpoints.size(); ++i)
-        {
-            if (visitedCheckpoints.count(i)) continue;
-
+        for (size_t i = 0; i < checkpoints.size(); ++i) {
+            if (visited.count(i)) continue;
             int distance = ComputeClosestPathDistance(grid, width, height, checkpoints[i]);
-
             if (distance < minDistance) {
                 minDistance = distance;
                 closestIndex = static_cast<int>(i);
             }
         }
 
-
         if (closestIndex == -1) break;
 
-
-        if (minDistance != INT_MAX)
-        {
-            if (minDistance == 0)
-            {
-                totalFitness += 500;  
-            }
-            else
-            {
-                totalFitness += (1000 / (minDistance + 1));  
-            }
-
-
-            visitedCheckpoints.insert(closestIndex);
-        }
+        totalFitness += (minDistance == 0) ? 500 : (1000 / (minDistance + 1));
+        visited.insert(closestIndex);
     }
 
     return totalFitness;
 }
 
-int FitnessFunction::ComputeClosestPathDistance(std::vector<int>& grid, int width, int height, const Checkpoint& checkpoint)
+int FitnessFunction::ComputeClosestPathDistance(std::vector<int>& grid, int width, int height, Checkpoint& checkpoint)
 {
     std::queue<std::pair<Point, int>> q;
     std::vector<bool> visited(width * height, false);
 
-
     for (int y = 0; y < height; ++y)
-    {
         for (int x = 0; x < width; ++x)
-        {
-            if (grid[y * width + x] == PATH)
-            {
+            if (grid[y * width + x] == PATH) {
                 q.push({ {x, y}, 0 });
                 visited[y * width + x] = true;
             }
-        }
-    }
 
-
-    while (!q.empty())
-    {
-        auto [current, dist] = q.front();
-        q.pop();
-
-
+    while (!q.empty()) {
+        auto [current, dist] = q.front(); q.pop();
         if (current.x == checkpoint.x && current.y == checkpoint.y)
-        {
             return dist;
-        }
 
+        for (const auto& [dx, dy] : directionVectors) {
+            int nx = current.x + dx, ny = current.y + dy;
+            int index = ny * width + nx;
 
-        for (const auto& dir : directionVectorss)
-        {
-            int nx = current.x + dir.first;
-            int ny = current.y + dir.second;
-            int newIndex = ny * width + nx;
-
-
-            if (nx >= 0 && nx < width && ny >= 0 && ny < height && !visited[newIndex])
-            {
-                visited[newIndex] = true;
+            if (nx >= 0 && nx < width && ny >= 0 && ny < height && !visited[index]) {
+                visited[index] = true;
                 q.push({ {nx, ny}, dist + 1 });
             }
         }
     }
 
-
     return INT_MAX;
 }
-

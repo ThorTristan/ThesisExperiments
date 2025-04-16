@@ -1,0 +1,49 @@
+{
+  "deb6a63dcbdd22b8": {
+    "expansion_size": 5,
+    "genetic_code": "FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F]---FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F+FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F]---FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F-FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F]---FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F[FFFFF]---FF[F[FFFFF]---FF[FFFFFF]---FF[F---]FFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[FFFFFF]---FF[F",
+    "mutation_chances": [
+      25,
+      25,
+      50
+    ],
+    "mutation_choice": "RULE",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FFFFF]---FF[F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FFFF]+FF---F[F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F"
+    ]
+  }
+}

@@ -1,6 +1,10 @@
 #include "lsystemCreator.h"
+#include "lsystemCreator.h"
+#include <random>
+#include <iostream>
 
-void LsystemGenerator::Generate(std::string initialWord, int iterations, std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules)
+void LsystemGenerator::Generate(std::string& initialWord, int iterations,
+     std::unordered_map<char, std::vector<std::pair<std::string, float>>>& rules)
 {
     InitialWord(initialWord);
     m_Iterations = iterations;
@@ -10,15 +14,9 @@ void LsystemGenerator::Generate(std::string initialWord, int iterations, std::un
 std::stack<char> LsystemGenerator::ReturnFinalStack() const
 {
     if (m_Stack.empty())
-    {
-        std::cout << "Error, stack empty" << std::endl;
-        return m_Stack;
-    }
-    else
-    {
-        return m_Stack;
-    }
-    
+        std::cerr << "Error: stack is empty." << std::endl;
+
+    return m_Stack;
 }
 
 void LsystemGenerator::PrintStack(std::stack<char> stack) {
@@ -26,77 +24,59 @@ void LsystemGenerator::PrintStack(std::stack<char> stack) {
         std::cout << stack.top();
         stack.pop();
     }
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
-void LsystemGenerator::InitialWord(std::string word)
+void LsystemGenerator::InitialWord(std::string& word)
 {
-    for (const auto& symbol : word)
-    {
-        m_Stack.push(symbol);
+    for (char c : word) {
+        m_Stack.push(c);
     }
 }
 
-
-void LsystemGenerator::Iterate(std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules)
+void LsystemGenerator::Iterate(std::unordered_map<char, std::vector<std::pair<std::string, float>>>& rules)
 {
     for (int i = 0; i < m_Iterations; ++i)
     {
-
-        while (!m_Stack.empty())
-        {
+        while (!m_Stack.empty()) {
             ApplyRule(rules);
         }
 
         std::swap(m_Stack, m_NewStack);
-
-        while (!m_NewStack.empty())
-        {
-            m_NewStack.pop();
-        }
+        // Clear the new stack by swapping with an empty one
+        std::stack<char>().swap(m_NewStack);
     }
-
 }
 
-
-void LsystemGenerator::ApplyRule(std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules)
+void LsystemGenerator::ApplyRule(std::unordered_map<char, std::vector<std::pair<std::string, float>>>& rules)
 {
-
     if (m_Stack.empty() || m_Stack.size() >= 50000000)
-    {
         return;
-    }
+
     char symbol = m_Stack.top();
     m_Stack.pop();
 
-
-    auto it = rules.find(symbol); 
+    auto it = rules.find(symbol);
     if (it != rules.end())
     {
-        const auto& rulesSet = it->second;
-
-        std::random_device rd;
-        std::mt19937 gen(rd());
+        static thread_local std::mt19937 gen(std::random_device{}());
         std::uniform_real_distribution<float> dist(0.0f, 1.0f);
         float randomValue = dist(gen);
 
         float cumulativeProb = 0.0f;
-        for (const auto& [rule, probability] : rulesSet)
+        for (const auto& [rule, probability] : it->second)
         {
             cumulativeProb += probability;
             if (randomValue <= cumulativeProb)
             {
-                for (const char& c : rule)
-                {
+                for (char c : rule)
                     m_NewStack.push(c);
-                }
                 return;
             }
         }
     }
-    else
-    {
-        m_NewStack.push(symbol);
-    }
+
+    // No rule matched or symbol not found, push original
+    m_NewStack.push(symbol);
 }
 

@@ -1,0 +1,49 @@
+{
+  "3e33ddb78052ef0a": {
+    "expansion_size": 3,
+    "genetic_code": "-+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+[]-+F-+[]FFFFFFF+-F-+]FFFFFFF+-F-[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFF+FFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-]F+-F-+[FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+-+---+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+[]-+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+-+-+-+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+[]-+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-F[]FFFFFFF+-F-+[]FFFFFFF-F-+[]FFFFFF[+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[][FFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+F]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+--+F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-F-+[]FFFFFFF+-][+-F-+[]FFFFFFF+-+-",
+    "mutation_chances": [
+      25,
+      50,
+      25
+    ],
+    "mutation_choice": "WORD",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "-+FFFFFFF][+-F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "-+FFFFFFF][+-F"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F"
+    ]
+  }
+}

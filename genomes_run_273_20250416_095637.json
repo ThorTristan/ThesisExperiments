@@ -1,0 +1,51 @@
+{
+  "8a6f35e7cb6331dc": {
+    "expansion_size": 3,
+    "genetic_code": "]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]+]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]++-+[]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]+]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]+]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]++-+[]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]-]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]+]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]++-+[]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF]F+F++-+[FFFF][+-++F+F++-+[FFFF]+F+F++-+[FFFF]]",
+    "mutation_chances": [
+      25,
+      25,
+      50
+    ],
+    "mutation_choice": "RULE",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "F+F++-+[FFFF]"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FFF+F[+-FFFFF]"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F",
+      "+",
+      "-"
+    ]
+  }
+}

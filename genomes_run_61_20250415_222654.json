@@ -1,0 +1,49 @@
+{
+  "31cf71451e913bed": {
+    "expansion_size": 7,
+    "genetic_code": "FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF--][FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF+FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF--][FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF--][FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FF[]--FFF-FF--][F-FFFFF-FF--][F-FF-FFF-FF--][F-FFFFF-FF--][F-FFFFF-FF--][F-FF",
+    "mutation_chances": [
+      25,
+      25,
+      50
+    ],
+    "mutation_choice": "RULE",
+    "rule_map": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "FFF-FF--][F-FF"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "starting_rule": {
+      "+": [
+        "+"
+      ],
+      "-": [
+        "-"
+      ],
+      "F": [
+        "F+FF-F-]F[--FF"
+      ],
+      "[": [
+        "["
+      ],
+      "]": [
+        "]"
+      ]
+    },
+    "symbol_set": [
+      "F"
+    ]
+  }
+}

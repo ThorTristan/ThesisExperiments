@@ -9,7 +9,7 @@ class LsystemGenerator
 
 public:
 
-	void Generate(std::string initialWord, int iterations, std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules);
+	void Generate(std::string& initialWord, int iterations, std::unordered_map<char, std::vector<std::pair<std::string, float>>>& rules);
 
 	std::stack<char> ReturnFinalStack() const;
 
@@ -18,11 +18,11 @@ public:
 private:
 
 
-	void InitialWord(std::string word);
+	void InitialWord(std::string& word);
 
-	void Iterate(std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules);
+	void Iterate(std::unordered_map<char, std::vector<std::pair<std::string, float>>>& rules);
 
-	void ApplyRule(std::unordered_map<char, std::vector<std::pair<std::string, float>>> rules);
+	void ApplyRule(std::unordered_map<char, std::vector<std::pair<std::string, float>>>& rules);
 
 
 

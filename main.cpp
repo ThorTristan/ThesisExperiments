@@ -5,6 +5,7 @@
 
 
 
+
 bool quit = false;
 RenderManager RM;
 FitnessFunction FF;
@@ -20,7 +21,8 @@ int main(int argc, char* argv[])
 	InputManager InputManager;
 	LsystemGenerator LG;
 	//Experiment1 experiment(30); //..DONE
-	Experiment3 experiment3(30);
+	//Experiment3 experiment3(30);
+	PTuning3 ptuning(5);
 	
 	ExperimentConstraints experiment2(30, constraintMatrices); //..DONE
 
@@ -54,7 +56,8 @@ int main(int argc, char* argv[])
 	//FF.CheckpointDistanceFitness(FF.CreateCheckpoints(50,50,CIRCULAR,4),constraintMatrix,initialState,charStack,50,50);
 
 
-	experiment3.Run();
+	ptuning.Run();
+	//experiment.Run();
 
 	//testing.TestCSP(charStack);
 	RM.presentScene();
